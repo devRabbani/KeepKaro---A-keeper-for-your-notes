@@ -7,6 +7,8 @@ import AuthContextProvider from '../auth/authContext'
 import nProgress from 'nprogress'
 import { Router } from 'next/router'
 import { useEffect } from 'react'
+import KeepListsContextProvider from '../contexts/keepLists'
+import KeepSavingContextProvider from '../contexts/keepSaving'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,14 +29,18 @@ export default function App({ Component, pageProps }) {
       Router.events.off('routeChangeError', handleStop)
     }
   }, [])
-
+  console.count('app')
   return (
     <>
       <AuthContextProvider>
-        <main className={inter.className}>
-          <Nav />
-          <Component {...pageProps} />
-        </main>
+        <KeepListsContextProvider>
+          <main className={inter.className}>
+            <KeepSavingContextProvider>
+              <Nav />
+              <Component {...pageProps} />
+            </KeepSavingContextProvider>
+          </main>
+        </KeepListsContextProvider>
       </AuthContextProvider>
       <Toaster />
     </>

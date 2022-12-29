@@ -1,0 +1,5 @@
+.homePage {
+  height: calc(100% - 6.5rem);
+  display: grid;
+  place-items: center;
+}

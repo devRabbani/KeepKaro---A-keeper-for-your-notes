@@ -2,6 +2,9 @@
   font-size: 2rem;
   overflow-y: scroll;
   margin-block: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .newKeepBtn {
@@ -10,4 +13,12 @@
   width: 100%;
   padding: 0.5em 0;
   border-radius: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.scrollable a {
+  color: var(--color-darkblue);
+  font-weight: 500;
+  padding-block: 0.4em;
+  border-bottom: 1px solid var(--color-lightblue);
 }
