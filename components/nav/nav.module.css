@@ -1,0 +1,96 @@
+.nav {
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+.navDiv {
+  display: grid;
+  place-items: center;
+  height: 6.5rem;
+  position: relative;
+}
+
+.navDiv a {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-red-1);
+}
+.menu {
+  position: absolute;
+  left: 0;
+  font-size: 3rem;
+  color: var(--color-darkblue);
+}
+
+.sidebarWrapper {
+  width: 78%;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-right: 1px solid grey;
+  padding-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+}
+
+.loginDiv {
+  margin-top: auto;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--color-lightblue);
+}
+
+.loginBtn {
+  background-color: blue;
+  width: 100%;
+  padding: 0.5em;
+  color: white;
+  border-radius: 0.7rem;
+}
+
+.sidebarTop {
+  height: 6.5rem;
+  border-bottom: 1px solid var(--color-lightblue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.sidebarTop svg {
+  font-size: 3.5rem;
+  color: var(--color-darkblue);
+}
+
+.sidebarTop p {
+  display: flex;
+  flex-direction: column;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-red-1);
+}
+.sidebarTop p span {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: black;
+}
+
+.userDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-darkblue);
+}
+.userDiv p {
+  font-size: 2.2rem;
+  text-transform: capitalize;
+}
+.userDiv svg {
+  font-size: 3rem;
+  color: var(--color-red-2);
+}

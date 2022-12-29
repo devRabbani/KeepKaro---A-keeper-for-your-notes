@@ -1,0 +1,53 @@
+.keepPage {
+  padding-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100% - 6.5rem);
+}
+
+.keepPage input,
+.keepPage textarea {
+  font-size: 2.3rem;
+  width: 100%;
+  padding: 0.4em;
+  border: none;
+  border-radius: 0.7rem;
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.keepPage textarea {
+  /* margin-top: 1rem; */
+  flex-grow: 1;
+  resize: none;
+}
+
+.keepPage input:focus,
+.keepPage input:active,
+.keepPage textarea:focus,
+.keepPage textarea:active {
+  border-color: #c3c3c3;
+}
+
+.keepPage input::placeholder,
+.keepPage textarea::placeholder {
+  color: #cbcbcb;
+}
+
+.keepInfo {
+  display: flex;
+  gap: 1rem;
+  margin-block: 1rem 1.6rem;
+}
+
+.keepInfo p {
+  width: 70%;
+  font-size: 1.6rem;
+  color: var(--color-lightblue);
+}
+.keepInfo button {
+  width: 30%;
+  padding: 0;
+  font-size: 1.6rem;
+  color: var(--color-darkblue);
+}
