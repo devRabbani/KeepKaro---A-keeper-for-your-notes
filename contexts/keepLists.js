@@ -1,6 +1,6 @@
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useAuth } from '../auth/authContext'
+import { useAuth } from './auth/authContext'
 import { db } from '../lib/firebase'
 
 const KeepListsContext = createContext()

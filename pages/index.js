@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { useAuth } from '../auth/authContext'
+import { useAuth } from '../contexts/auth/authContext'
 import FullLoading from '../components/fullLoading'
 import { useKeepsList } from '../contexts/keepLists'
 import s from '../styles/Home.module.css'

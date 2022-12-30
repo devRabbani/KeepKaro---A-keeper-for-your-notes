@@ -1,5 +1,5 @@
 import { RiCloseFill } from 'react-icons/ri'
-import { useAuth } from '../../auth/authContext'
+import { useAuth } from '../../contexts/auth/authContext'
 import s from './nav.module.css'
 import { IoMdLogIn, IoMdLogOut } from 'react-icons/io'
 import SidebarContent from '../sidebarContent'
