@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { RiShareForwardLine } from 'react-icons/ri'
+import Loading from '../../components/loading'
 import { useAuth } from '../../contexts/auth/authContext'
-import FullLoading from '../../components/fullLoading'
 import { useKeepSaving } from '../../contexts/keepSaving'
 import useAddRecents from '../../hooks/useAddRecents'
 import { db } from '../../lib/firebase'
@@ -123,7 +123,7 @@ export default function KeepPage() {
   useAddRecents(title, keepId)
 
   if (isLoading) {
-    return <FullLoading text="Getting Keep.." />
+    return <Loading text="Getting Keep.." />
   }
 
   return (

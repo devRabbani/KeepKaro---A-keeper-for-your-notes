@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import Loading from '../components/loading'
 import { useAuth } from '../contexts/auth/authContext'
-import FullLoading from '../components/fullLoading'
 import { useKeepsList } from '../contexts/keepLists'
 import s from '../styles/Home.module.css'
 
@@ -20,7 +20,7 @@ export default function Home() {
   // }, [loading])
 
   if (loading) {
-    return <FullLoading text="Getting Data.." />
+    return <Loading text="Getting Data.." />
   }
   console.log(recents)
   return (

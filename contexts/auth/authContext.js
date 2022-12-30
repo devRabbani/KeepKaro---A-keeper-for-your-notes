@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth'
 import { createContext, useContext, useEffect, useReducer } from 'react'
-import FullLoading from '../../components/fullLoading'
+import Loading from '../../components/loading'
 import { auth } from '../../lib/firebase'
 import { AuthReducer } from './authReducer'
 
@@ -24,7 +24,7 @@ export default function AuthContextProvider({ children }) {
   }, [])
 
   if (!state.authReady) {
-    return <FullLoading text="KeepKaro" full />
+    return <Loading text="KeepKaro" full />
   }
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

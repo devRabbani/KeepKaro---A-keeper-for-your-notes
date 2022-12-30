@@ -1,6 +1,6 @@
 import s from './fullLoading.module.css'
 
-export default function FullLoading({ text, full }) {
+export default function Loading({ text, full }) {
   return (
     <div className={`${s.body} ${full ? 'full' : ''}`}>
       <div className={s.content}>
