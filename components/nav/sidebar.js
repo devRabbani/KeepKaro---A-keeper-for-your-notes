@@ -1,7 +1,7 @@
 import { RiCloseFill } from 'react-icons/ri'
 import { useAuth } from '../../auth/authContext'
 import s from './nav.module.css'
-import { IoMdLogOut } from 'react-icons/io'
+import { IoMdLogIn, IoMdLogOut } from 'react-icons/io'
 import SidebarContent from '../sidebarContent'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
@@ -53,13 +53,12 @@ export default function Sidebar({ setIsMenu }) {
       <SidebarContent user={user} />
       <div className={s.loginDiv}>
         {user ? (
-          <div className={s.userDiv}>
-            <p>@{user?.displayName}</p>
-            <IoMdLogOut onClick={logout} />
-          </div>
+          <button onClick={logout} className={s.logoutBtn}>
+            Logout <IoMdLogOut />
+          </button>
         ) : (
           <button disabled={isLoading} onClick={login} className={s.loginBtn}>
-            {isLoading ? 'Logging in' : 'Login'}
+            {isLoading ? 'Logging in' : 'Login'} <IoMdLogIn />
           </button>
         )}
       </div>

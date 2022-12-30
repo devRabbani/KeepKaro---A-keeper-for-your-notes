@@ -23,7 +23,7 @@ export default function SidebarContent({ user }) {
     }
     try {
       const keepId = uuidv4()
-      await createKeep(keepId, user?.uid)
+      await createKeep(keepId, user?.uid, user?.displayName)
       router.push('/keep/' + keepId)
     } catch (error) {
       console.log(error.message)

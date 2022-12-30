@@ -32,16 +32,16 @@ export default function App({ Component, pageProps }) {
   console.count('app')
   return (
     <>
-      <AuthContextProvider>
-        <KeepListsContextProvider>
-          <main className={inter.className}>
+      <main className={inter.className}>
+        <AuthContextProvider>
+          <KeepListsContextProvider>
             <KeepSavingContextProvider>
               <Nav />
               <Component {...pageProps} />
             </KeepSavingContextProvider>
-          </main>
-        </KeepListsContextProvider>
-      </AuthContextProvider>
+          </KeepListsContextProvider>
+        </AuthContextProvider>
+      </main>
       <Toaster />
     </>
   )

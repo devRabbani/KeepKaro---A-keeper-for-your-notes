@@ -1,12 +1,15 @@
 import { doc, onSnapshot } from 'firebase/firestore'
+import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { RiShareForwardLine } from 'react-icons/ri'
 import { useAuth } from '../../auth/authContext'
+import FullLoading from '../../components/fullLoading'
 import { useKeepSaving } from '../../contexts/keepSaving'
+import useAddRecents from '../../hooks/useAddRecents'
 import { db } from '../../lib/firebase'
-import { deleteKeep } from '../../lib/helper'
+import { deleteKeep, editContent, editTitle } from '../../lib/helper'
 import s from '../../styles/keepPage.module.css'
 
 export default function KeepPage() {
@@ -14,10 +17,12 @@ export default function KeepPage() {
   const [data, setData] = useState({
     title: '',
     content: '',
+    name: '',
   })
-  const [dltLoading, setDltLoading] = useState(false)
 
-  const { title, content } = data
+  const [isLoading, setIsLoading] = useState(true)
+
+  const { title, content, name } = data
 
   // Saving context
   const { keepSaving, handleKeepSaving } = useKeepSaving()
@@ -40,22 +45,50 @@ export default function KeepPage() {
   }
 
   // Handle Delete
-  const handleDelete = async () => {
-    try {
-      const isConfirm = confirm('Are you confirm you want to delete this keep?')
-      if (isConfirm) {
-        const id = toast.loading(<b>Deleting please wait...</b>)
-        setDltLoading(true)
-        await deleteKeep(keepId, user?.uid)
-        setDltLoading(false)
-        toast.success(<b>Deleted successfully</b>, { id })
+  // const handleDelete = async () => {
+  //   try {
+  //     const isConfirm = confirm('Are you confirm you want to delete this keep?')
+  //     if (isConfirm) {
+  //       const id = toast.loading(<b>Deleting please wait...</b>)
+  //       setDltLoading(true)
+  //       await deleteKeep(keepId, user?.uid)
+  //       setDltLoading(false)
+  //       toast.success(<b>Deleted successfully</b>, { id })
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message)
+  //     setDltLoading(false)
+  //     toast.error(<b>{error.message}</b>, { id })
+  //   }
+  // }
+
+  // Debounce Content update
+  const debounceContent = useCallback(
+    debounce(async (content) => {
+      try {
+        await editContent(keepId, content)
+        handleKeepSaving(false)
+      } catch (error) {
+        console.log(error.message)
+        toast.error(<b>{error.message}</b>)
       }
-    } catch (error) {
-      console.log(error.message)
-      setDltLoading(false)
-      toast.error(<b>{error.message}</b>, { id })
-    }
-  }
+    }, 1800),
+    []
+  )
+
+  // Debounce title update
+  const debounceTitle = useCallback(
+    debounce(async (title) => {
+      try {
+        await editTitle(keepId, user?.uid, title)
+        handleKeepSaving(false)
+      } catch (error) {
+        console.log(error.message)
+        toast.error(<b>{error.message}</b>)
+      }
+    }, 1800),
+    []
+  )
 
   // Side Effects
   // Getting initial Content
@@ -65,6 +98,7 @@ export default function KeepPage() {
       unsub = onSnapshot(doc(db, 'keeps', keepId), (snapshot) => {
         if (snapshot.exists()) {
           setData(snapshot.data())
+          setIsLoading(false)
         } else {
           router.push('/')
         }
@@ -73,13 +107,29 @@ export default function KeepPage() {
     return () => unsub && unsub()
   }, [keepId])
 
+  // Update Content
+
+  useEffect(() => {
+    debounceContent(content)
+  }, [content])
+
+  // Update title
+
+  useEffect(() => {
+    debounceTitle(title)
+  }, [title])
+
+  // Adding to Recents
+  useAddRecents(title, keepId)
+
+  if (isLoading) {
+    return <FullLoading text="Getting Keep.." />
+  }
+
   return (
     <div className={`${s.keepPage} wrapper`}>
       <div className={s.keepInfo}>
-        <p>Kept by Display Name</p>
-        <button disabled={dltLoading} onClick={handleDelete}>
-          {dltLoading ? 'Deleting' : 'Delete'}
-        </button>
+        <p>Kept by {name || 'User'}</p>
         <button>
           <RiShareForwardLine /> Share this
         </button>

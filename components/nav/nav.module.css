@@ -12,11 +12,20 @@
   position: relative;
 }
 
-.navDiv a {
+.navDiv a,
+.keeping {
   font-size: 3rem;
   font-weight: 600;
   color: var(--color-red-1);
 }
+
+.keeping {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #d904276b;
+}
+
 .menu {
   position: absolute;
   left: 0;
@@ -44,12 +53,20 @@
   border-top: 1px solid var(--color-lightblue);
 }
 
-.loginBtn {
-  background-color: blue;
+.loginBtn,
+.logoutBtn {
   width: 100%;
   padding: 0.5em;
   color: white;
   border-radius: 0.7rem;
+}
+
+.loginBtn {
+  background-color: blue;
+}
+
+.logoutBtn {
+  background-color: var(--color-red-2);
 }
 
 .sidebarTop {
@@ -78,19 +95,4 @@
   font-size: 1.2rem;
   font-weight: 400;
   color: black;
-}
-
-.userDiv {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--color-darkblue);
-}
-.userDiv p {
-  font-size: 2.2rem;
-  text-transform: capitalize;
-}
-.userDiv svg {
-  font-size: 3rem;
-  color: var(--color-red-2);
 }

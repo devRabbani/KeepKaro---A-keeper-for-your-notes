@@ -4,6 +4,7 @@
   --color-red-2: #ef233c;
   --color-darkblue: #2b2d42;
   --color-lightblue: #8d99ae;
+  --color-darkblue-2: #515f77;
 }
 /*
   1. Use a more-intuitive box-sizing model.
@@ -90,7 +91,7 @@ h6 {
 
 /* Default font size for REM */
 h1 {
-  font-size: 3.45rem;
+  font-size: 3.3rem;
   font-weight: 600;
 }
 h2 {
