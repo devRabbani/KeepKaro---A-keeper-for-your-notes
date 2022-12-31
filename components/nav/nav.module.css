@@ -25,13 +25,15 @@
   color: var(--color-darkblue);
 }
 
-.mode {
+.autoKeeping {
   position: absolute;
+  font-size: 1.5rem;
   right: 0;
-  font-size: 3rem;
-  color: var(--color-darkblue);
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  color: rgb(0, 128, 115);
 }
-
 .sidebarWrapper {
   width: 78%;
   background-color: rgb(255, 255, 255);

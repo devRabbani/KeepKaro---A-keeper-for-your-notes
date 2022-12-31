@@ -1,5 +1,3 @@
-import DOMPurify from 'dompurify'
-import { useRef } from 'react'
 import s from '../../styles/keepPage.module.css'
 
 export default function ReadContent({ title, content }) {
@@ -29,18 +27,10 @@ export default function ReadContent({ title, content }) {
     return wordOrUrl
   })
 
-  // Sanitize the HTML to prevent XSS attacks
-  const sanitizedHtml = DOMPurify.sanitize(html)
-  console.log(sanitizedHtml.innerHTML)
   return (
     <>
       <div className={s.title}>{title}</div>
-      <div
-        // dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-        className={s.content}
-      >
-        {html}
-      </div>
+      <div className={s.content}>{html}</div>
     </>
   )
 }

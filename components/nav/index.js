@@ -8,20 +8,20 @@ import { useRouter } from 'next/router'
 
 export default function Nav() {
   const [isMenu, setIsMenu] = useState(false)
-  const { dispatch } = useKeepSaving()
 
   const router = useRouter()
-  const {
-    query: { keepId, edit },
-  } = router
-
-  console.log(edit, keepId, edit)
+  const { keepSaving } = useKeepSaving()
   return (
     <>
       <nav className={s.nav}>
         <div className={`${s.navDiv} wrapper`}>
           <RiMenu5Fill onClick={() => setIsMenu(true)} className={s.menu} />
           <Link href="/">KeepKaro</Link>
+          {keepSaving ? (
+            <span className={s.autoKeeping}>
+              <RiSave3Line /> Keeping
+            </span>
+          ) : null}
         </div>
       </nav>
       {isMenu ? <Sidebar setIsMenu={setIsMenu} /> : null}

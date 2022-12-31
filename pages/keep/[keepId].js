@@ -28,12 +28,13 @@ export default function KeepPage() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [shareLoading, setShareLoading] = useState(false)
+  const [dltLoading, setDltLoading] = useState(false)
   const [edit, setEdit] = useState(false)
 
   const { title, content, name } = data
 
   // Saving context
-  const { dispatch } = useKeepSaving()
+  const { changeKeepSaving } = useKeepSaving()
   const { user } = useAuth()
 
   // ROuter
@@ -54,30 +55,30 @@ export default function KeepPage() {
   }
 
   // Handle Delete
-  // const handleDelete = async () => {
-  //   try {
-  //     const isConfirm = confirm('Are you confirm you want to delete this keep?')
-  //     if (isConfirm) {
-  //       const id = toast.loading(<b>Deleting please wait...</b>)
-  //       setDltLoading(true)
-  //       await deleteKeep(keepId, user?.uid)
-  //       setDltLoading(false)
-  //       toast.success(<b>Deleted successfully</b>, { id })
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message)
-  //     setDltLoading(false)
-  //     toast.error(<b>{error.message}</b>, { id })
-  //   }
-  // }
+  const handleDelete = async () => {
+    try {
+      const isConfirm = confirm('Are you confirm you want to delete this keep?')
+      if (isConfirm) {
+        const id = toast.loading(<b>Deleting please wait...</b>)
+        setDltLoading(true)
+        await deleteKeep(keepId, user?.uid)
+        setDltLoading(false)
+        toast.success(<b>Deleted successfully</b>, { id })
+      }
+    } catch (error) {
+      console.log(error.message)
+      setDltLoading(false)
+      toast.error(<b>{error.message}</b>, { id })
+    }
+  }
 
   // Debounce Content update
   const debounceContent = useCallback(
     debounce(async (content) => {
-      dispatch({ type: 'SAVING' })
+      changeKeepSaving(true)
       try {
         await editContent(keepId, content)
-        dispatch({ type: 'DONE' })
+        changeKeepSaving(false)
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
@@ -89,10 +90,10 @@ export default function KeepPage() {
   // Debounce title update
   const debounceTitle = useCallback(
     debounce(async (title) => {
-      dispatch({ type: 'SAVING' })
+      changeKeepSaving(true)
       try {
         await editTitle(keepId, user?.uid, title)
-        dispatch({ type: 'DONE' })
+        changeKeepSaving(false)
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
@@ -155,9 +156,13 @@ export default function KeepPage() {
       {isOwn ? (
         <div className={s.toolbarWrapper}>
           <div className={s.toolbar}>
-            <button className={s.dltBtn}>
+            <button
+              disabled={dltLoading}
+              onClick={handleDelete}
+              className={s.dltBtn}
+            >
               <RiDeleteBin5Fill />
-              Delete
+              {dltLoading ? 'Deleting' : 'Delete'}
             </button>
             <button
               className={s.editBtn}
