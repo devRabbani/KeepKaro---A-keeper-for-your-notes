@@ -7,8 +7,9 @@ import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebase'
+import { forwardRef } from 'react'
 
-export default function Sidebar({ setIsMenu }) {
+const Sidebar = ({ setIsMenu }, ref) => {
   const { user, dispatch } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -20,6 +21,7 @@ export default function Sidebar({ setIsMenu }) {
       if (res) {
         toast.success(<b>Welcome {res.user.displayName}</b>, { id })
         dispatch({ type: 'LOGIN', payload: res.user })
+        setIsMenu(false)
         setIsLoading(false)
       } else {
         throw new Error('Something went wrong please try again!')
@@ -35,6 +37,7 @@ export default function Sidebar({ setIsMenu }) {
     try {
       await signOut(auth)
       dispatch({ type: 'LOGOUT' })
+      setIsMenu(false)
     } catch (error) {
       console.log(error.message)
       toast.error(<b>{error.message}</b>)
@@ -42,7 +45,7 @@ export default function Sidebar({ setIsMenu }) {
   }
 
   return (
-    <div className={s.sidebarWrapper}>
+    <div ref={ref} className={s.sidebarWrapper}>
       <div className={s.sidebarTop}>
         <p>
           KeepKaro
@@ -50,7 +53,7 @@ export default function Sidebar({ setIsMenu }) {
         </p>
         <RiCloseFill onClick={() => setIsMenu(false)} />
       </div>
-      <SidebarContent user={user} />
+      <SidebarContent user={user} setIsMenu={setIsMenu} />
       <div className={s.loginDiv}>
         {user ? (
           <button onClick={logout} className={s.logoutBtn}>
@@ -65,3 +68,5 @@ export default function Sidebar({ setIsMenu }) {
     </div>
   )
 }
+
+export default forwardRef(Sidebar)

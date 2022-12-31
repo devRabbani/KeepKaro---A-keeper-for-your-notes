@@ -7,7 +7,7 @@ import { useKeepsList } from '../../contexts/keepLists'
 import Link from 'next/link'
 import { createKeep } from '../../lib/helper'
 
-export default function SidebarContent({ user }) {
+export default function SidebarContent({ user, setIsMenu }) {
   // Router
   const router = useRouter()
 
@@ -24,11 +24,16 @@ export default function SidebarContent({ user }) {
     try {
       const keepId = uuidv4()
       await createKeep(keepId, user?.uid, user?.displayName)
+      setIsMenu(false)
       router.push('/keep/' + keepId)
     } catch (error) {
       console.log(error.message)
       toast.error(<b>{error.message}</b>)
     }
+  }
+
+  const handleClick = () => {
+    setIsMenu(false)
   }
 
   return (
@@ -40,8 +45,13 @@ export default function SidebarContent({ user }) {
         <p>Getting Keeps list..</p>
       ) : (
         data?.map((keep) => (
-          <Link href={'/keep/' + keep.keepId} key={keep.keepId}>
+          <Link
+            onClick={handleClick}
+            href={'/keep/' + keep.keepId}
+            key={keep.keepId}
+          >
             {keep.title}
+            <div className={s.gradient} />
           </Link>
         ))
       )}

@@ -198,6 +198,7 @@ export default function KeepPage() {
             onChange={handleChange}
             type="text"
             placeholder="Title of the Keep"
+            maxLength={100}
           />
 
           <textarea

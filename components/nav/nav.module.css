@@ -36,6 +36,7 @@
 }
 .sidebarWrapper {
   width: 78%;
+  min-width: 28.5rem;
   background-color: rgb(255, 255, 255);
   height: 100%;
   position: fixed;
