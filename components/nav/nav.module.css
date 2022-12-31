@@ -12,23 +12,22 @@
   position: relative;
 }
 
-.navDiv a,
-.keeping {
+.navDiv a {
   font-size: 3rem;
   font-weight: 600;
   color: var(--color-red-1);
 }
 
-.keeping {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #d904276b;
-}
-
 .menu {
   position: absolute;
   left: 0;
+  font-size: 3rem;
+  color: var(--color-darkblue);
+}
+
+.mode {
+  position: absolute;
+  right: 0;
   font-size: 3rem;
   color: var(--color-darkblue);
 }

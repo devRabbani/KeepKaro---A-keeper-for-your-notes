@@ -3,13 +3,19 @@ import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { RiShareForwardLine } from 'react-icons/ri'
+import {
+  RiDeleteBin5Fill,
+  RiEditFill,
+  RiEyeFill,
+  RiShareForwardLine,
+} from 'react-icons/ri'
 import Loading from '../../components/loading'
+import ReadContent from '../../components/readContent'
 import { useAuth } from '../../contexts/auth/authContext'
 import { useKeepSaving } from '../../contexts/keepSaving'
 import useAddRecents from '../../hooks/useAddRecents'
 import { db } from '../../lib/firebase'
-import { deleteKeep, editContent, editTitle } from '../../lib/helper'
+import { deleteKeep, editContent, editTitle, shareKeep } from '../../lib/helper'
 import s from '../../styles/keepPage.module.css'
 
 export default function KeepPage() {
@@ -21,11 +27,13 @@ export default function KeepPage() {
   })
 
   const [isLoading, setIsLoading] = useState(true)
+  const [shareLoading, setShareLoading] = useState(false)
+  const [edit, setEdit] = useState(false)
 
   const { title, content, name } = data
 
   // Saving context
-  const { keepSaving, handleKeepSaving } = useKeepSaving()
+  const { dispatch } = useKeepSaving()
   const { user } = useAuth()
 
   // ROuter
@@ -34,9 +42,10 @@ export default function KeepPage() {
     query: { keepId },
   } = router
 
+  const isOwn = data?.uid === user?.uid
+
   // Custom Functions
   const handleChange = (e) => {
-    handleKeepSaving(true)
     const { name, value } = e.target
     setData((prev) => ({
       ...prev,
@@ -65,9 +74,10 @@ export default function KeepPage() {
   // Debounce Content update
   const debounceContent = useCallback(
     debounce(async (content) => {
+      dispatch({ type: 'SAVING' })
       try {
         await editContent(keepId, content)
-        handleKeepSaving(false)
+        dispatch({ type: 'DONE' })
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
@@ -79,9 +89,10 @@ export default function KeepPage() {
   // Debounce title update
   const debounceTitle = useCallback(
     debounce(async (title) => {
+      dispatch({ type: 'SAVING' })
       try {
         await editTitle(keepId, user?.uid, title)
-        handleKeepSaving(false)
+        dispatch({ type: 'DONE' })
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
@@ -89,6 +100,19 @@ export default function KeepPage() {
     }, 1800),
     []
   )
+
+  // Share keep
+  const handleShare = async () => {
+    setShareLoading(true)
+    try {
+      await shareKeep(keepId, title)
+      setShareLoading(false)
+    } catch (error) {
+      console.log(error.message)
+      toast.error(<b>{error.message}</b>)
+      setShareLoading(false)
+    }
+  }
 
   // Side Effects
   // Getting initial Content
@@ -128,26 +152,60 @@ export default function KeepPage() {
 
   return (
     <div className={`${s.keepPage} wrapper`}>
+      {isOwn ? (
+        <div className={s.toolbarWrapper}>
+          <div className={s.toolbar}>
+            <button className={s.dltBtn}>
+              <RiDeleteBin5Fill />
+              Delete
+            </button>
+            <button
+              className={s.editBtn}
+              onClick={() => setEdit((prev) => !prev)}
+            >
+              {edit ? (
+                <>
+                  <RiEyeFill />
+                  Read
+                </>
+              ) : (
+                <>
+                  <RiEditFill />
+                  Edit
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      ) : null}
+
       <div className={s.keepInfo}>
         <p>Kept by {name || 'User'}</p>
-        <button>
-          <RiShareForwardLine /> Share this
+        <button disabled={shareLoading} onClick={handleShare}>
+          <RiShareForwardLine /> {shareLoading ? 'Sharing' : 'Share this'}
         </button>
       </div>
-      <input
-        name="title"
-        value={title}
-        onChange={handleChange}
-        type="text"
-        placeholder="Title of the Keep"
-      />
+      {edit && isOwn ? (
+        <>
+          <input
+            name="title"
+            value={title}
+            onChange={handleChange}
+            type="text"
+            placeholder="Title of the Keep"
+          />
 
-      <textarea
-        name="content"
-        value={content}
-        onChange={handleChange}
-        placeholder="Type your content here"
-      />
+          <textarea
+            wrap="hard"
+            name="content"
+            value={content}
+            onChange={handleChange}
+            placeholder="Type your content here"
+          />
+        </>
+      ) : (
+        <ReadContent title={title} content={content} />
+      )}
     </div>
   )
 }

@@ -1,18 +1,30 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useReducer, useState } from 'react'
 
 const KeepSavingContext = createContext()
 
 export const useKeepSaving = () => useContext(KeepSavingContext)
 
-export default function KeepSavingContextProvider({ children }) {
-  const [keepSaving, setKeepSaving] = useState(false)
-
-  const handleKeepSaving = (value) => {
-    setKeepSaving(value)
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'SAVING':
+      return { ...state, keepSaving: true }
+    case 'DONE':
+      return { ...state, keepSaving: false }
+    case 'TOGGLE':
+      return { ...state, edit: !state.edit }
+    default:
+      return state
   }
+}
+
+export default function KeepSavingContextProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, {
+    keepSaving: false,
+    edit: true,
+  })
 
   return (
-    <KeepSavingContext.Provider value={{ keepSaving, handleKeepSaving }}>
+    <KeepSavingContext.Provider value={{ ...state, dispatch }}>
       {children}
     </KeepSavingContext.Provider>
   )
