@@ -1,4 +1,4 @@
-import { RiCloseFill } from 'react-icons/ri'
+import { RiArrowLeftSFill, RiArrowLeftSLine, RiCloseFill } from 'react-icons/ri'
 import { useAuth } from '../../contexts/auth/authContext'
 import s from './nav.module.css'
 import { IoMdLogIn, IoMdLogOut } from 'react-icons/io'
@@ -51,7 +51,7 @@ const Sidebar = ({ setIsMenu }, ref) => {
           KeepKaro
           <span>Powered by CanWeBe!</span>
         </p>
-        <RiCloseFill onClick={() => setIsMenu(false)} />
+        <RiArrowLeftSLine onClick={() => setIsMenu(false)} />
       </div>
       <SidebarContent user={user} setIsMenu={setIsMenu} />
       <div className={s.loginDiv}>

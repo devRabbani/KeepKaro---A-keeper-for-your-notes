@@ -19,7 +19,7 @@
 }
 .homePage h3 {
   width: fit-content;
-  margin-block: 3rem 2rem;
+  margin-block: 3rem 1.5rem;
   color: var(--color-darkblue-2);
 }
 
