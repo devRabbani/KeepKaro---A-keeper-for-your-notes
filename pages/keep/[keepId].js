@@ -1,7 +1,13 @@
 import { doc, onSnapshot } from 'firebase/firestore'
 import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { toast } from 'react-hot-toast'
 import {
   RiDeleteBin5Fill,
@@ -15,7 +21,13 @@ import { useAuth } from '../../contexts/auth/authContext'
 import { useKeepSaving } from '../../contexts/keepSaving'
 import useAddRecents from '../../hooks/useAddRecents'
 import { db } from '../../lib/firebase'
-import { deleteKeep, editContent, editTitle, shareKeep } from '../../lib/helper'
+import {
+  deleteKeep,
+  editContent,
+  editTitle,
+  getKeepData,
+  shareKeep,
+} from '../../lib/helper'
 import s from '../../styles/keepPage.module.css'
 
 export default function KeepPage() {
@@ -31,6 +43,9 @@ export default function KeepPage() {
   const [dltLoading, setDltLoading] = useState(false)
   const [edit, setEdit] = useState(false)
 
+  // Ref
+  const isCancel = useRef(false)
+
   const { title, content, name } = data
 
   // Saving context
@@ -45,13 +60,24 @@ export default function KeepPage() {
 
   const isOwn = data?.uid === user?.uid
 
-  // Custom Functions
-  const handleChange = (e) => {
-    const { name, value } = e.target
+  // Change Content
+  const changeContent = (e) => {
+    changeKeepSaving(true)
     setData((prev) => ({
       ...prev,
-      [name]: value,
+      content: e.target.value,
     }))
+    debounceContent(e.target.value)
+  }
+
+  // Change Title
+  const changeTitle = (e) => {
+    changeKeepSaving(true)
+    setData((prev) => ({
+      ...prev,
+      title: e.target.value,
+    }))
+    debounceTitle(e.target.value)
   }
 
   // Handle Delete
@@ -63,6 +89,7 @@ export default function KeepPage() {
         setDltLoading(true)
         await deleteKeep(keepId, user?.uid)
         setDltLoading(false)
+        router.push('/')
         toast.success(<b>Deleted successfully</b>, { id })
       }
     } catch (error) {
@@ -75,7 +102,7 @@ export default function KeepPage() {
   // Debounce Content update
   const debounceContent = useCallback(
     debounce(async (content) => {
-      changeKeepSaving(true)
+      console.count('Runn content')
       try {
         await editContent(keepId, content)
         changeKeepSaving(false)
@@ -84,13 +111,13 @@ export default function KeepPage() {
         toast.error(<b>{error.message}</b>)
       }
     }, 1800),
-    []
+    [keepId]
   )
 
   // Debounce title update
   const debounceTitle = useCallback(
     debounce(async (title) => {
-      changeKeepSaving(true)
+      console.count('Runn title')
       try {
         await editTitle(keepId, user?.uid, title)
         changeKeepSaving(false)
@@ -99,7 +126,7 @@ export default function KeepPage() {
         toast.error(<b>{error.message}</b>)
       }
     }, 1800),
-    []
+    [keepId]
   )
 
   // Share keep
@@ -116,33 +143,35 @@ export default function KeepPage() {
   }
 
   // Side Effects
+
   // Getting initial Content
   useEffect(() => {
-    let unsub
-    if (keepId) {
-      unsub = onSnapshot(doc(db, 'keeps', keepId), (snapshot) => {
-        if (snapshot.exists()) {
-          setData(snapshot.data())
-          setIsLoading(false)
+    const handleData = async () => {
+      try {
+        setIsLoading(true)
+        const res = await getKeepData(keepId)
+        if (res) {
+          if (!isCancel.current) {
+            setData(res)
+            setIsLoading(false)
+          }
         } else {
           router.push('/')
         }
-      })
+      } catch (error) {
+        console.log(error.message)
+        toast.error(<b>{error.message}</b>)
+        setIsLoading(false)
+      }
     }
-    return () => unsub && unsub()
+    keepId && handleData()
   }, [keepId])
 
-  // Update Content
-
+  // Cancel Sideeffects
   useEffect(() => {
-    debounceContent(content)
-  }, [content])
-
-  // Update title
-
-  useEffect(() => {
-    debounceTitle(title)
-  }, [title])
+    isCancel.current = false
+    return () => (isCancel.current = true)
+  }, [])
 
   // Adding to Recents
   useAddRecents(title, keepId)
@@ -195,7 +224,7 @@ export default function KeepPage() {
           <input
             name="title"
             value={title}
-            onChange={handleChange}
+            onChange={changeTitle}
             type="text"
             placeholder="Title of the Keep"
             maxLength={100}
@@ -205,7 +234,7 @@ export default function KeepPage() {
             wrap="hard"
             name="content"
             value={content}
-            onChange={handleChange}
+            onChange={changeContent}
             placeholder="Type your content here"
           />
         </>
