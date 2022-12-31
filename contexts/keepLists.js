@@ -14,29 +14,35 @@ export default function KeepListsContextProvider({ children }) {
 
   useEffect(() => {
     let unsub
-    if (authReady && user?.uid) {
-      setLoading(true)
-      try {
-        unsub = onSnapshot(
-          query(
-            collection(db, 'users', user?.uid, 'keeplists'),
-            orderBy('createdAt', 'desc')
-          ),
-          (snapshot) => {
-            if (!snapshot.empty) {
-              let list = []
-              snapshot.forEach((item) => {
-                list.push({ keepId: item.id, ...item.data() })
-              })
-              setData(list)
-            } else {
-              setData([])
+
+    if (authReady) {
+      if (user?.uid) {
+        setLoading(true)
+        try {
+          unsub = onSnapshot(
+            query(
+              collection(db, 'users', user?.uid, 'keeplists'),
+              orderBy('createdAt', 'desc')
+            ),
+            (snapshot) => {
+              if (!snapshot.empty) {
+                let list = []
+                snapshot.forEach((item) => {
+                  list.push({ keepId: item.id, ...item.data() })
+                })
+                setData(list)
+              } else {
+                setData([])
+              }
+              setLoading(false)
             }
-            setLoading(false)
-          }
-        )
-      } catch (error) {
-        console.log(error.message)
+          )
+        } catch (error) {
+          console.log(error.message)
+          setLoading(false)
+        }
+      } else {
+        setData([])
         setLoading(false)
       }
     }
