@@ -9,7 +9,7 @@ export default function Document() {
           content="Now Keep your all important notes, links and share with your friends"
         />
 
-        <meta name="theme-color" content="#5f59f7" />
+        <meta name="theme-color" content="#d90429" />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="https://keepkaro.vercel.app" />
