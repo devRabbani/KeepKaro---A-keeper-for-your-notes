@@ -10,7 +10,7 @@ export default function Document() {
         />
 
         <meta name="theme-color" content="#d90429" />
-
+        <meta name="color-scheme" content="light dark" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="https://keepkaro.vercel.app" />
         <meta name="twitter:title" content="KeepKaro" />
