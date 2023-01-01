@@ -6,6 +6,7 @@
   text-transform: capitalize;
   text-align: center;
   color: #9a9ec9;
+  font-size: 2.4rem;
   background: -webkit-linear-gradient(0deg, #b0b1d4, #d98d8d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -58,5 +59,8 @@
   }
   .keepLists {
     grid-template-columns: 1fr 1fr;
+  }
+  .homePage h1 {
+    font-size: 3.3rem;
   }
 }

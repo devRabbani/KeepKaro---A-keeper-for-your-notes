@@ -29,7 +29,7 @@ export default function KeepPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [shareLoading, setShareLoading] = useState(false)
 
-  const [edit, setEdit] = useState(false)
+  const [edit, setEdit] = useState(true)
 
   // Ref
   const isCancel = useRef(false)
