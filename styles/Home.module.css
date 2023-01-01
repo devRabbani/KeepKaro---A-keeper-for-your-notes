@@ -1,7 +1,4 @@
 .homePage {
-  /* height: calc(100% - 6.5rem);
-  display: grid;
-  place-items: center; */
   padding-block: 2rem 5rem;
 }
 
@@ -43,12 +40,11 @@
   font-size: 2rem;
   padding: 0.7em 0.4em;
   border-radius: 0.4rem;
-  color: rgb(20, 20, 20);
-  background-color: white;
+  color: var(--color-black-1);
+  background-color: var(--color-keepwhite);
   border-bottom: 1px solid var(--color-darkblue);
 }
 
 .noData {
-  /* text-align: center; */
-  color: #a8a9b3;
+  color: var(--color-nodata);
 }

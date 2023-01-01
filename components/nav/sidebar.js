@@ -1,4 +1,13 @@
-import { RiArrowLeftSFill, RiArrowLeftSLine, RiCloseFill } from 'react-icons/ri'
+import {
+  RiArrowLeftSFill,
+  RiArrowLeftSLine,
+  RiCloseFill,
+  RiLightbulbFill,
+  RiLightbulbLine,
+  RiMoonFill,
+  RiMoonLine,
+} from 'react-icons/ri'
+import { MdLightMode, MdDarkMode } from 'react-icons/md'
 import { useAuth } from '../../contexts/auth/authContext'
 import s from './nav.module.css'
 import { IoMdLogIn, IoMdLogOut } from 'react-icons/io'
@@ -9,10 +18,10 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebase'
 import { forwardRef } from 'react'
 
-const Sidebar = ({ setIsMenu }, ref) => {
+const Sidebar = ({ setIsMenu, isMenu }, ref) => {
   const { user, dispatch } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState(localStorage.getItem('mode') || 'light')
 
   const login = async () => {
     setIsLoading(true)
@@ -37,9 +46,11 @@ const Sidebar = ({ setIsMenu }, ref) => {
   const toggleColorMode = () => {
     if (mode === 'light') {
       setMode('dark')
+      localStorage.setItem('mode', 'dark')
       document.documentElement.setAttribute('data-theme', 'dark')
     } else {
       setMode('light')
+      localStorage.setItem('mode', 'light')
       document.documentElement.setAttribute('data-theme', 'light')
     }
   }
@@ -54,15 +65,18 @@ const Sidebar = ({ setIsMenu }, ref) => {
       toast.error(<b>{error.message}</b>)
     }
   }
+  console.log(isMenu)
 
   return (
-    <div ref={ref} className={s.sidebarWrapper}>
+    <div ref={ref} className={`${s.sidebarWrapper} ${isMenu ? 'open' : ''}`}>
       <div className={s.sidebarTop}>
         <p>
           KeepKaro
           <span>Powered by CanWeBe!</span>
         </p>
-        <button onClick={toggleColorMode}>Toggle {mode}</button>
+        <button onClick={toggleColorMode} className={s.mode}>
+          {mode === 'light' ? <RiMoonFill /> : <RiLightbulbLine />}
+        </button>
         <RiArrowLeftSLine onClick={() => setIsMenu(false)} />
       </div>
       <SidebarContent user={user} setIsMenu={setIsMenu} />

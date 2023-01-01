@@ -19,7 +19,9 @@
 
 .keepPage input,
 .keepPage textarea {
-  border: 1px solid #c3c3c3;
+  border: 1px solid var(--color-inputborder);
+  background-color: var(--color-fullwhite);
+  color: var(--color-darkblue);
 }
 
 .keepPage textarea {
@@ -33,7 +35,7 @@
 .keepPage input:active,
 .keepPage textarea:focus,
 .keepPage textarea:active {
-  border-color: #615cc1;
+  border-color: var(--color-inputborder-active);
 }
 
 .keepPage input::placeholder,
@@ -70,10 +72,8 @@
 
 .title,
 .content {
-  background-color: #e0dfde;
-  background-color: #e6e5e4;
-  color: #224656;
-  border: 1px solid #e6e5e4;
+  background-color: var(--color-keepread);
+  border: 1px solid var(--color-keepread);
 }
 
 .content {
@@ -83,13 +83,14 @@
   flex-grow: 1;
   overflow-wrap: break-word;
   margin-top: 1.5rem;
+  color: var(--color-content);
 }
 .title {
   font-weight: 600;
   color: var(--color-darkblue);
 }
 .content a {
-  color: blue;
+  color: var(--color-blue-1);
 }
 
 .toolbarWrapper {
@@ -103,11 +104,9 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  border: 1px solid rgb(189, 189, 189);
+  border: 1px solid var(--color-toolbarborder);
   border-radius: 0.7rem;
   padding: 0.5em 1.5em;
-  background-color: #dee5f1;
-  background-color: #e7e9ed;
 }
 .toolbar button {
   font-size: 1.7rem;

@@ -1,6 +1,13 @@
 import Link from 'next/link'
 import s from './nav.module.css'
-import { RiEditFill, RiEyeFill, RiMenu5Fill, RiSave3Line } from 'react-icons/ri'
+import {
+  RiEditFill,
+  RiEyeFill,
+  RiMenu5Fill,
+  RiSave3Fill,
+  RiSave3Line,
+  RiUploadCloud2Line,
+} from 'react-icons/ri'
 import { useEffect, useRef, useState } from 'react'
 import Sidebar from './sidebar'
 import { useKeepSaving } from '../../contexts/keepSaving'
@@ -12,7 +19,7 @@ export default function Nav() {
   const sidebarRef = useRef(null)
 
   const router = useRouter()
-  const { keepSaving } = useKeepSaving()
+  const { keepSaving, keepDone, changeKeepDone } = useKeepSaving()
 
   useEffect(() => {
     const handler = (e) => {
@@ -25,6 +32,16 @@ export default function Nav() {
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
+  // Check for Keep Save Done
+  useEffect(() => {
+    let tracker
+    if (keepDone) {
+      tracker = setTimeout(() => changeKeepDone(), 2000)
+    }
+
+    return () => tracker && clearTimeout(tracker)
+  }, [keepDone])
+
   return (
     <>
       <nav className={s.nav}>
@@ -33,12 +50,17 @@ export default function Nav() {
           <Link href="/">KeepKaro</Link>
           {keepSaving ? (
             <span className={s.autoKeeping}>
-              <RiSave3Line /> Keeping
+              <RiUploadCloud2Line /> Keeping
+            </span>
+          ) : keepDone ? (
+            <span className={s.autoKeeping}>
+              <RiSave3Line />
+              Kept
             </span>
           ) : null}
         </div>
       </nav>
-      {isMenu ? <Sidebar ref={sidebarRef} setIsMenu={setIsMenu} /> : null}
+      <Sidebar ref={sidebarRef} setIsMenu={setIsMenu} isMenu={isMenu} />
     </>
   )
 }

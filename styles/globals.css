@@ -1,13 +1,51 @@
 :root {
   --color-white: #edf2f4;
+  --color-fullwhite: #ffffff;
+  --color-keepwhite: #ffffff;
+  --color-fullblack: #000000;
+  --color-black-1: #141414;
   --color-red-1: #d90429;
-  --color-red-2: #ef233c;
   --color-red-3: #cb0018;
   --color-blue-1: #4b56d2;
   --color-darkblue: #2b2d42;
   --color-lightblue: #8d99ae;
   --color-darkblue-2: #515f77;
+  --nav-shadow: 0 -2px 15px #0000004d;
+  --color-keepread: #e6e5e4;
+  --color-content: #224656;
+  --color-inputborder: #c3c3c3;
+  --color-inputborder-active: #615cc1;
+  --color-toolbarborder: #b1b1b4;
+  --color-modebg: #dde3f9;
+  --color-mode: #2b2d42;
+  --color-keeping: #008073;
+  --color-nodata: #a8a9b3;
+  --gradient-sidenav: linear-gradient(to left, #ffffff 15%, #ffffff4d 100%);
 }
+
+[data-theme='dark'] {
+  --color-white: #202023;
+  --color-fullwhite: #000000;
+  --color-keepwhite: #29292f;
+  --color-keepread: #18191b;
+  --color-fullblack: #e4e4e4;
+  --color-black-1: #b4b4b4;
+  --color-red-1: #bb203b;
+  --color-red-3: #ae1a2b;
+  --color-blue-1: #4950a3;
+  --color-darkblue: #989ba4;
+  --color-darkblue-2: #8895ac;
+  --color-content: #989fa3;
+  --color-inputborder: #565252;
+  --color-toolbarborder: #48484a;
+  --color-inputborder-active: #a8a8a8;
+  --color-modebg: #3b3c46;
+  --color-mode: #bebec2;
+  --color-keeping: #3e746f;
+  --color-nodata: #49494e;
+  --gradient-sidenav: linear-gradient(to left, #000000, #0c0c0c4d);
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -131,4 +169,25 @@ button {
   gap: 0.4rem;
   align-items: center;
   justify-content: center;
+}
+
+.notfound {
+  min-height: calc(100% - 6.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.notfound h3 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--color-darkblue);
+}
+
+.notfound a {
+  font-size: 2rem;
+  color: var(--color-blue-1);
 }
