@@ -1,5 +1,6 @@
 import { doc, onSnapshot } from 'firebase/firestore'
 import debounce from 'lodash.debounce'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import {
   useCallback,
@@ -181,66 +182,71 @@ export default function KeepPage() {
   }
 
   return (
-    <div className={`${s.keepPage} wrapper`}>
-      {isOwn ? (
-        <div className={s.toolbarWrapper}>
-          <div className={s.toolbar}>
-            <button
-              disabled={dltLoading}
-              onClick={handleDelete}
-              className={s.dltBtn}
-            >
-              <RiDeleteBin5Fill />
-              {dltLoading ? 'Deleting' : 'Delete'}
-            </button>
-            <button
-              className={s.editBtn}
-              onClick={() => setEdit((prev) => !prev)}
-            >
-              {edit ? (
-                <>
-                  <RiEyeFill />
-                  Read
-                </>
-              ) : (
-                <>
-                  <RiEditFill />
-                  Edit
-                </>
-              )}
-            </button>
+    <>
+      <Head>
+        <title>{title || 'Keep'} | KeepKaro</title>
+      </Head>
+      <div className={`${s.keepPage} wrapper`}>
+        {isOwn ? (
+          <div className={s.toolbarWrapper}>
+            <div className={s.toolbar}>
+              <button
+                disabled={dltLoading}
+                onClick={handleDelete}
+                className={s.dltBtn}
+              >
+                <RiDeleteBin5Fill />
+                {dltLoading ? 'Deleting' : 'Delete'}
+              </button>
+              <button
+                className={s.editBtn}
+                onClick={() => setEdit((prev) => !prev)}
+              >
+                {edit ? (
+                  <>
+                    <RiEyeFill />
+                    Read
+                  </>
+                ) : (
+                  <>
+                    <RiEditFill />
+                    Edit
+                  </>
+                )}
+              </button>
+            </div>
           </div>
+        ) : null}
+
+        <div className={s.keepInfo}>
+          <p>Kept by {name || 'User'}</p>
+          <button disabled={shareLoading} onClick={handleShare}>
+            <RiShareForwardLine /> {shareLoading ? 'Sharing' : 'Share this'}
+          </button>
         </div>
-      ) : null}
+        {edit && isOwn ? (
+          <>
+            <input
+              name="title"
+              value={title}
+              onChange={changeTitle}
+              type="text"
+              placeholder="Title of the Keep"
+              maxLength={100}
+            />
 
-      <div className={s.keepInfo}>
-        <p>Kept by {name || 'User'}</p>
-        <button disabled={shareLoading} onClick={handleShare}>
-          <RiShareForwardLine /> {shareLoading ? 'Sharing' : 'Share this'}
-        </button>
+            <textarea
+              wrap="hard"
+              name="content"
+              value={content}
+              onChange={changeContent}
+              placeholder="Type your content here"
+            />
+          </>
+        ) : (
+          <ReadContent title={title} content={content} />
+        )}
       </div>
-      {edit && isOwn ? (
-        <>
-          <input
-            name="title"
-            value={title}
-            onChange={changeTitle}
-            type="text"
-            placeholder="Title of the Keep"
-            maxLength={100}
-          />
-
-          <textarea
-            wrap="hard"
-            name="content"
-            value={content}
-            onChange={changeContent}
-            placeholder="Type your content here"
-          />
-        </>
-      ) : (
-        <ReadContent title={title} content={content} />
-      )}
-    </div>
+    </>
   )
 }

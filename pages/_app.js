@@ -9,6 +9,7 @@ import { Router } from 'next/router'
 import { useEffect } from 'react'
 import KeepListsContextProvider from '../contexts/keepLists'
 import KeepSavingContextProvider from '../contexts/keepSaving'
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,9 +30,17 @@ export default function App({ Component, pageProps }) {
       Router.events.off('routeChangeError', handleStop)
     }
   }, [])
-  console.count('app')
+
+  console.log(
+    'Looks like you are on the wrong place, There is nothing here .If you want to work with us contact teamCanWeBe!'
+  )
+
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>KeepKaro - Keep and share your notes and links</title>
+      </Head>
       <main className={inter.className}>
         <AuthContextProvider>
           <KeepListsContextProvider>

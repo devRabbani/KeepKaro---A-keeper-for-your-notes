@@ -12,6 +12,7 @@ import { forwardRef } from 'react'
 const Sidebar = ({ setIsMenu }, ref) => {
   const { user, dispatch } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+  const [mode, setMode] = useState('light')
 
   const login = async () => {
     setIsLoading(true)
@@ -33,6 +34,16 @@ const Sidebar = ({ setIsMenu }, ref) => {
     }
   }
 
+  const toggleColorMode = () => {
+    if (mode === 'light') {
+      setMode('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+      setMode('light')
+      document.documentElement.setAttribute('data-theme', 'light')
+    }
+  }
+
   const logout = async () => {
     try {
       await signOut(auth)
@@ -51,6 +62,7 @@ const Sidebar = ({ setIsMenu }, ref) => {
           KeepKaro
           <span>Powered by CanWeBe!</span>
         </p>
+        <button onClick={toggleColorMode}>Toggle {mode}</button>
         <RiArrowLeftSLine onClick={() => setIsMenu(false)} />
       </div>
       <SidebarContent user={user} setIsMenu={setIsMenu} />
