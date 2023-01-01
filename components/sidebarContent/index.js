@@ -24,6 +24,12 @@ export default function SidebarContent({ user, setIsMenu }) {
       toast.error(<b>You need to login first!!</b>)
       return
     }
+    if (data?.length > 15) {
+      toast.error(
+        <b>Ohh oh Max number of keeps. Please delete unwanted keeps.</b>
+      )
+      return
+    }
     try {
       const keepId = uuidv4()
       await createKeep(keepId, user?.uid, user?.displayName)
@@ -44,21 +50,23 @@ export default function SidebarContent({ user, setIsMenu }) {
       <button onClick={handleNewKeep} className={s.newKeepBtn}>
         New Keep <RiAddCircleLine />
       </button>
-      {loading ? (
-        <p>Getting Keeps list..</p>
-      ) : (
-        data?.map((keep) => (
-          <Link
-            onClick={handleClick}
-            href={'/keep/' + keep.keepId}
-            key={keep.keepId}
-            className={keepIdUrl === keep.keepId ? 'active' : ''}
-          >
-            {keep.title}
-            <div className={s.gradient} />
-          </Link>
-        ))
-      )}
+      <div className={s.scrollableContent}>
+        {loading ? (
+          <p>Getting Keeps list..</p>
+        ) : (
+          data?.map((keep) => (
+            <Link
+              onClick={handleClick}
+              href={'/keep/' + keep.keepId}
+              key={keep.keepId}
+              className={keepIdUrl === keep.keepId ? 'active' : ''}
+            >
+              {keep.title}
+              <div className={s.gradient} />
+            </Link>
+          ))
+        )}
+      </div>
     </div>
   )
 }

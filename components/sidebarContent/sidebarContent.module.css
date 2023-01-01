@@ -1,7 +1,12 @@
 .scrollable {
   font-size: 2rem;
   overflow-y: scroll;
-  margin-block: 1.5rem 2rem;
+  margin-block: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.scrollableContent {
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
 }
@@ -23,6 +28,7 @@
   position: relative;
   white-space: nowrap;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .scrollable a:global(.active) {
@@ -32,10 +38,22 @@
 .gradient {
   background-image: var(--gradient-sidenav);
   width: 5rem;
-  /* height: 90%; */
   height: 90%;
   right: 0;
   top: 0;
   bottom: 0;
   position: absolute;
+}
+
+@media screen and (min-width: 1280px) {
+  .scrollableContent::-webkit-scrollbar {
+    width: 0.7rem;
+  }
+  .scrollableContent {
+    padding-right: 1.1rem;
+  }
+  .scrollableContent::-webkit-scrollbar-thumb {
+    background-color: var(--color-toolbarborder);
+    border-radius: 50vw;
+  }
 }

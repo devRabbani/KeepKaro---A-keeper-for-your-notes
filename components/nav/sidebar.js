@@ -1,13 +1,4 @@
-import {
-  RiArrowLeftSFill,
-  RiArrowLeftSLine,
-  RiCloseFill,
-  RiLightbulbFill,
-  RiLightbulbLine,
-  RiMoonFill,
-  RiMoonLine,
-} from 'react-icons/ri'
-import { MdLightMode, MdDarkMode } from 'react-icons/md'
+import { RiArrowLeftSLine, RiLightbulbLine, RiMoonFill } from 'react-icons/ri'
 import { useAuth } from '../../contexts/auth/authContext'
 import s from './nav.module.css'
 import { IoMdLogIn, IoMdLogOut } from 'react-icons/io'
@@ -17,6 +8,7 @@ import { toast } from 'react-hot-toast'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebase'
 import { forwardRef } from 'react'
+import Link from 'next/link'
 
 const Sidebar = ({ setIsMenu, isMenu }, ref) => {
   const { user, dispatch } = useAuth()
@@ -65,19 +57,21 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
       toast.error(<b>{error.message}</b>)
     }
   }
-  console.log(isMenu)
 
   return (
     <div ref={ref} className={`${s.sidebarWrapper} ${isMenu ? 'open' : ''}`}>
       <div className={s.sidebarTop}>
-        <p>
+        <Link href="/">
           KeepKaro
           <span>Powered by CanWeBe!</span>
-        </p>
+        </Link>
         <button onClick={toggleColorMode} className={s.mode}>
           {mode === 'light' ? <RiMoonFill /> : <RiLightbulbLine />}
         </button>
-        <RiArrowLeftSLine onClick={() => setIsMenu(false)} />
+        <RiArrowLeftSLine
+          onClick={() => setIsMenu(false)}
+          className={s.menuArrow}
+        />
       </div>
       <SidebarContent user={user} setIsMenu={setIsMenu} />
       <div className={s.loginDiv}>

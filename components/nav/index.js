@@ -1,24 +1,14 @@
 import Link from 'next/link'
 import s from './nav.module.css'
-import {
-  RiEditFill,
-  RiEyeFill,
-  RiMenu5Fill,
-  RiSave3Fill,
-  RiSave3Line,
-  RiUploadCloud2Line,
-} from 'react-icons/ri'
+import { RiMenu5Fill, RiSave3Line, RiUploadCloud2Line } from 'react-icons/ri'
 import { useEffect, useRef, useState } from 'react'
 import Sidebar from './sidebar'
 import { useKeepSaving } from '../../contexts/keepSaving'
-import { useRouter } from 'next/router'
 
 export default function Nav() {
   const [isMenu, setIsMenu] = useState(false)
 
   const sidebarRef = useRef(null)
-
-  const router = useRouter()
   const { keepSaving, keepDone, changeKeepDone } = useKeepSaving()
 
   useEffect(() => {

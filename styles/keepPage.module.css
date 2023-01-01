@@ -25,7 +25,6 @@
 }
 
 .keepPage textarea {
-  /* margin-top: 1rem; */
   flex-grow: 1;
   resize: none;
   margin-top: 1.5rem;
@@ -62,14 +61,6 @@
   color: var(--color-darkblue);
 }
 
-/* .keepPage textarea:disabled {
-  background-color: #ffffff;
-}
-
-.keepPage input:disabled {
-  background-color: white;
-} */
-
 .title,
 .content {
   background-color: var(--color-keepread);
@@ -77,8 +68,6 @@
 }
 
 .content {
-  /* word-break: break-word;
-  overflow-wrap: anywhere; */
   white-space: break-spaces;
   flex-grow: 1;
   overflow-wrap: break-word;
@@ -112,8 +101,58 @@
   font-size: 1.7rem;
 }
 .editBtn {
-  color: var(--color-blue-1);
+  color: var(--color-blue-1) !important;
 }
 .dltBtn {
-  color: var(--color-red-3);
+  color: var(--color-red-3) !important;
+}
+
+.keepInfo .toolbarWrapper {
+  display: none;
+}
+
+/* Media Queries */
+@media screen and (min-width: 800px) {
+  .toolbarWrapper {
+    display: none;
+  }
+  .keepInfo .toolbarWrapper {
+    display: block;
+    margin-left: auto;
+    position: static;
+  }
+
+  .keepInfo {
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .keepInfo > * {
+    font-size: 1.7rem !important;
+  }
+
+  .toolbar {
+    border: none;
+    padding: 0;
+    gap: 2rem;
+  }
+
+  .keepInfo p,
+  .keepInfo button {
+    width: auto;
+  }
+}
+
+/* Media Query */
+
+@media screen and (min-width: 1280px) {
+  .keepPage {
+    padding: 0 0 2rem 40rem;
+    margin-top: -6.5rem;
+    min-height: 100%;
+  }
+  .editBtn,
+  .dltBtn {
+    z-index: 1100;
+  }
 }

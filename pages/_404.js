@@ -1,4 +1,3 @@
-import { CONSTANTS } from '@firebase/util'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'

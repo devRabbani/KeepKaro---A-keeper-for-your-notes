@@ -23,6 +23,7 @@
   left: 0;
   font-size: 3rem;
   color: var(--color-darkblue);
+  cursor: pointer;
 }
 
 .autoKeeping {
@@ -37,6 +38,7 @@
 .sidebarWrapper {
   width: 78%;
   min-width: 28.5rem;
+  max-width: 40rem;
   background-color: var(--color-fullwhite);
   height: 100%;
   position: fixed;
@@ -50,7 +52,6 @@
   opacity: 0;
   transform: translateX(-100%);
   transform-origin: left;
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .sidebarWrapper:global(.open) {
@@ -94,9 +95,10 @@
 .sidebarTop svg {
   font-size: 3.5rem;
   color: var(--color-darkblue);
+  cursor: pointer;
 }
 
-.sidebarTop p {
+.sidebarTop a {
   display: flex;
   flex-direction: column;
   font-size: 2.8rem;
@@ -104,7 +106,7 @@
   font-weight: 600;
   color: var(--color-red-1);
 }
-.sidebarTop p span {
+.sidebarTop a span {
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--color-fullblack);
@@ -120,4 +122,41 @@
 .mode svg {
   font-size: 2.9rem;
   color: var(--color-mode);
+}
+
+/* Media Query */
+@media screen and (min-width: 1280px) {
+  .sidebarWrapper {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 1001;
+    background-color: var(--color-white);
+    left: auto;
+    width: 40rem;
+    max-width: 100%;
+  }
+  .nav {
+    background-color: transparent;
+    box-shadow: none;
+    z-index: 0;
+    isolation: isolate;
+  }
+
+  .nav a,
+  .menuArrow {
+    display: none;
+  }
+
+  .autoKeeping {
+    background-color: var(--color-white);
+    padding: 0.3em 0.6em;
+    border-radius: 0.7rem;
+    font-weight: 500;
+    font-size: 1.8rem;
+    z-index: 10007;
+  }
+
+  .mode {
+    margin-right: 1rem;
+  }
 }

@@ -31,8 +31,8 @@
 }
 
 .keepLists {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1;
   gap: 1.3rem;
 }
 
@@ -47,4 +47,16 @@
 
 .noData {
   color: var(--color-nodata);
+}
+
+/* Media Query */
+
+@media screen and (min-width: 1280px) {
+  .homePage {
+    padding: 0 0 5rem 40rem;
+    margin-top: -3rem;
+  }
+  .keepLists {
+    grid-template-columns: 1fr 1fr;
+  }
 }

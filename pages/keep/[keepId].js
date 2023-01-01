@@ -1,29 +1,16 @@
-import { doc, onSnapshot } from 'firebase/firestore'
 import debounce from 'lodash.debounce'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import {
-  RiDeleteBin5Fill,
-  RiEditFill,
-  RiEyeFill,
-  RiShareForwardLine,
-} from 'react-icons/ri'
+import { RiShareForwardLine } from 'react-icons/ri'
 import Loading from '../../components/loading'
 import ReadContent from '../../components/readContent'
+import Toolbar from '../../components/toolBar'
 import { useAuth } from '../../contexts/auth/authContext'
 import { useKeepSaving } from '../../contexts/keepSaving'
 import useAddRecents from '../../hooks/useAddRecents'
-import { db } from '../../lib/firebase'
 import {
-  deleteKeep,
   editContent,
   editTitle,
   getKeepData,
@@ -41,7 +28,7 @@ export default function KeepPage() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [shareLoading, setShareLoading] = useState(false)
-  const [dltLoading, setDltLoading] = useState(false)
+
   const [edit, setEdit] = useState(false)
 
   // Ref
@@ -79,25 +66,6 @@ export default function KeepPage() {
       title: e.target.value,
     }))
     debounceTitle(e.target.value)
-  }
-
-  // Handle Delete
-  const handleDelete = async () => {
-    try {
-      const isConfirm = confirm('Are you confirm you want to delete this keep?')
-      if (isConfirm) {
-        const id = toast.loading(<b>Deleting please wait...</b>)
-        setDltLoading(true)
-        await deleteKeep(keepId, user?.uid)
-        setDltLoading(false)
-        router.push('/')
-        toast.success(<b>Deleted successfully</b>, { id })
-      }
-    } catch (error) {
-      console.log(error.message)
-      setDltLoading(false)
-      toast.error(<b>{error.message}</b>, { id })
-    }
   }
 
   // Debounce Content update
@@ -188,38 +156,24 @@ export default function KeepPage() {
       </Head>
       <div className={`${s.keepPage} wrapper`}>
         {isOwn ? (
-          <div className={s.toolbarWrapper}>
-            <div className={s.toolbar}>
-              <button
-                disabled={dltLoading}
-                onClick={handleDelete}
-                className={s.dltBtn}
-              >
-                <RiDeleteBin5Fill />
-                {dltLoading ? 'Deleting' : 'Delete'}
-              </button>
-              <button
-                className={s.editBtn}
-                onClick={() => setEdit((prev) => !prev)}
-              >
-                {edit ? (
-                  <>
-                    <RiEyeFill />
-                    Read
-                  </>
-                ) : (
-                  <>
-                    <RiEditFill />
-                    Edit
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
+          <Toolbar
+            keepId={keepId}
+            edit={edit}
+            setEdit={setEdit}
+            uid={user?.uid}
+          />
         ) : null}
 
         <div className={s.keepInfo}>
           <p>Kept by {name || 'User'}</p>
+          {isOwn ? (
+            <Toolbar
+              keepId={keepId}
+              edit={edit}
+              setEdit={setEdit}
+              uid={user?.uid}
+            />
+          ) : null}
           <button disabled={shareLoading} onClick={handleShare}>
             <RiShareForwardLine /> {shareLoading ? 'Sharing' : 'Share this'}
           </button>

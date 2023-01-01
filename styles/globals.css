@@ -74,6 +74,11 @@ body,
 main {
   /* min-height: 100%; */
   height: inherit;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }
 /*
   Typographic tweaks!
@@ -155,7 +160,7 @@ a {
 
 .wrapper {
   width: 95%;
-  max-width: 1000px;
+  max-width: 900px;
   margin-inline: auto;
 }
 
@@ -190,4 +195,24 @@ button {
 .notfound a {
   font-size: 2rem;
   color: var(--color-blue-1);
+}
+
+/* Media Query */
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    max-width: 1400px;
+  }
+  main {
+    max-width: 1400px;
+    margin-inline: auto;
+  }
+
+  :root {
+    --gradient-sidenav: linear-gradient(to left, #edf2f4, #edf2f451);
+  }
+
+  [data-theme='dark'] {
+    --gradient-sidenav: linear-gradient(to left, #202023, #2020234d);
+  }
 }
