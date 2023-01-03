@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/auth/authContext'
 import s from './nav.module.css'
 import { IoMdLogIn, IoMdLogOut } from 'react-icons/io'
 import SidebarContent from '../sidebarContent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebase'
@@ -39,11 +39,9 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
     if (mode === 'light') {
       setMode('dark')
       localStorage.setItem('mode', 'dark')
-      document.documentElement.setAttribute('data-theme', 'dark')
     } else {
       setMode('light')
       localStorage.setItem('mode', 'light')
-      document.documentElement.setAttribute('data-theme', 'light')
     }
   }
 
@@ -57,6 +55,14 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
       toast.error(<b>{error.message}</b>)
     }
   }
+
+  useEffect(() => {
+    if (mode === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light')
+    }
+  }, [mode])
 
   return (
     <div ref={ref} className={`${s.sidebarWrapper} ${isMenu ? 'open' : ''}`}>
