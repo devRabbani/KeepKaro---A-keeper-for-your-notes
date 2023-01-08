@@ -32,6 +32,7 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   useEffect(() => {
+    console.log('share checking')
     if (navigator.shareTarget) {
       // Register the PWA as a share target
       navigator.shareTarget.register({
