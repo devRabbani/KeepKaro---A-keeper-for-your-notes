@@ -31,6 +31,22 @@ export default function App({ Component, pageProps }) {
     }
   }, [])
 
+  useEffect(() => {
+    if (navigator.shareTarget) {
+      // Register the PWA as a share target
+      navigator.shareTarget.register({
+        title: 'KeepKaro Links',
+        types: ['text/plain'],
+      })
+
+      // Receive shared data when the PWA is selected as the share target
+      navigator.shareTarget.receive('text/plain').then((data) => {
+        console.log('Received shared data: ', data)
+        alert(data)
+      })
+    }
+  }, [])
+
   console.log(
     'Looks like you are on the wrong place, There is nothing here .If you want to work with us contact teamCanWeBe!'
   )
