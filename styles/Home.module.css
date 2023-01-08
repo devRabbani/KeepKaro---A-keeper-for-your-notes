@@ -50,6 +50,44 @@
   color: var(--color-nodata);
 }
 
+/* Share Data */
+.btnDiv {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.btnDiv > * {
+  font-size: 1.8rem;
+  padding-block: 0.3em;
+  width: 10rem;
+  text-align: center;
+  border-radius: 0.4rem;
+}
+
+.btnDiv button {
+  background-color: var(--color-blue-1);
+}
+
+.btnDiv a {
+  background-color: var(--color-cancel);
+  color: var(--color-content);
+}
+.shareP {
+  color: var(--color-lightblue);
+}
+
+.shareData {
+  padding: 0.4em;
+  font-size: 2rem;
+  border-radius: 0.4rem;
+  color: var(--color-black-1);
+  background-color: var(--color-keepwhite);
+  margin-block: 1rem;
+  word-wrap: break-word;
+  max-height: 15rem;
+  overflow-y: auto;
+}
+
 /* Media Query */
 
 @media screen and (min-width: 1280px) {

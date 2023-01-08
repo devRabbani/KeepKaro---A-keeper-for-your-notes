@@ -4,7 +4,7 @@
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64 48x48 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
@@ -26,17 +26,16 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#d90429",
   "background_color": "#edf2f4",
+  "theme_color": "#d90429",
   "orientation": "portrait",
   "categories": ["productivity"],
   "share_target": {
-    "action": "/share",
+    "action": "/",
     "method": "GET",
     "params": {
       "title": "title",
-      "text": "text",
-      "url": "url"
+      "text": "text"
     }
   }
 }

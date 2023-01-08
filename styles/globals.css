@@ -20,6 +20,8 @@
   --color-mode: #2b2d42;
   --color-keeping: #008073;
   --color-nodata: #a8a9b3;
+
+  --color-cancel: #e4e4e4;
   --gradient-sidenav: linear-gradient(to left, #ffffff 15%, #ffffff4d 100%);
 }
 
@@ -43,6 +45,7 @@
   --color-mode: #bebec2;
   --color-keeping: #3e746f;
   --color-nodata: #49494e;
+  --color-cancel: #252525;
   --gradient-sidenav: linear-gradient(to left, #000000, #0c0c0c4d);
 }
 
