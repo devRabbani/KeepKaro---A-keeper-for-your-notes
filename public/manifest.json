@@ -29,5 +29,13 @@
   "theme_color": "#d90429",
   "background_color": "#edf2f4",
   "orientation": "portrait",
-  "categories": ["productivity"]
+  "categories": ["productivity"],
+  "share_target": {
+    "action": "/share",
+    "params": {
+      "title": "name",
+      "text": "description",
+      "url": "link"
+    }
+  }
 }
