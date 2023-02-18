@@ -29,7 +29,9 @@
 .autoKeeping {
   position: absolute;
   font-size: 1.5rem;
-  right: 0;
+  right: 1.6rem;
+  top: 2.4rem;
+  z-index: 9999;
   display: flex;
   gap: 0.3rem;
   align-items: center;
@@ -153,7 +155,8 @@
     border-radius: 0.7rem;
     font-weight: 500;
     font-size: 1.8rem;
-    z-index: 10007;
+    top: 2.1rem;
+    right: 3rem;
   }
 
   .mode {

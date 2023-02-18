@@ -60,6 +60,7 @@
   font-size: 1.6rem;
   color: var(--color-darkblue);
   white-space: nowrap;
+  z-index: 1;
 }
 
 .title,

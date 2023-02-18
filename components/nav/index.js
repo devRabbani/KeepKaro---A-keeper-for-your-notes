@@ -38,18 +38,18 @@ export default function Nav() {
         <div className={`${s.navDiv} wrapper`}>
           <RiMenu5Fill onClick={() => setIsMenu(true)} className={s.menu} />
           <Link href="/">KeepKaro</Link>
-          {keepSaving ? (
-            <span className={s.autoKeeping}>
-              <RiUploadCloud2Line /> Keeping
-            </span>
-          ) : keepDone ? (
-            <span className={s.autoKeeping}>
-              <RiSave3Line />
-              Kept
-            </span>
-          ) : null}
         </div>
       </nav>
+      {keepSaving ? (
+        <span className={s.autoKeeping}>
+          <RiUploadCloud2Line /> Keeping
+        </span>
+      ) : keepDone ? (
+        <span className={s.autoKeeping}>
+          <RiSave3Line />
+          Kept
+        </span>
+      ) : null}
       <Sidebar ref={sidebarRef} setIsMenu={setIsMenu} isMenu={isMenu} />
     </>
   )
