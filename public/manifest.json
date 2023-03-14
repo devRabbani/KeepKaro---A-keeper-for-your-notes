@@ -30,6 +30,24 @@
   "theme_color": "#d90429",
   "orientation": "portrait",
   "categories": ["productivity"],
+  "screenshots": [
+    {
+      "src": "screenshot2.png",
+      "sizes": "675x1200",
+      "type": "image/png"
+    },
+    {
+      "src": "screenshot3.png",
+      "sizes": "675x1200",
+      "type": "image/png"
+    },
+    {
+      "src": "screenshot1.png",
+      "sizes": "675x1200",
+      "type": "image/png"
+    }
+  ],
+  "description": "Now Keep your all important notes, links and share with your friends",
   "share_target": {
     "action": "/",
     "method": "GET",
