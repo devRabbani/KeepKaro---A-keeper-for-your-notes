@@ -4,4 +4,4 @@ KeepKaro - Now keep and share your important links, notes with friends. With fea
 
 Powered by [CanWeBe](https://canwebe.tech) , Made with mainly NextJs and Firebase
 
-[View Live : KeepKaro](https://keepkaro.vercel.app)
+[View Live : KeepKaro](https://keepkaro.canwebe.tech)
