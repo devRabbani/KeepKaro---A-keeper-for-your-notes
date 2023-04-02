@@ -75,6 +75,7 @@
   overflow-wrap: break-word;
   margin-top: 1.5rem;
   color: var(--color-content);
+  user-select: text;
 }
 .title {
   font-weight: 600;
