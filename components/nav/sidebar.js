@@ -77,6 +77,7 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
       <div className={s.sidebarHeader}>
         <Link href="/" className={s.sidebarLogo}>
           KeepKaro
+          <span className={s.brandTagline}>Notes kept simple</span>
         </Link>
         <div className={s.sidebarActions}>
           <button

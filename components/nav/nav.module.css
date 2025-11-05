@@ -2,9 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(248, 246, 244, 0.9);
+  background-color: var(--card-background);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid #e2dad4;
+  border-bottom: 1px solid var(--border);
   box-shadow: 0 12px 24px -20px rgba(45, 38, 35, 0.4);
 }
 
@@ -29,16 +29,16 @@
   width: 3.6rem;
   height: 3.6rem;
   border-radius: 1.2rem;
-  border: 1px solid #e2dad4;
-  background-color: #ffffff;
-  color: #3c332f;
+  border: 1px solid var(--border);
+  background-color: var(--card-background);
+  color: var(--foreground);
   transition: background-color 0.2s ease, border-color 0.2s ease,
     transform 0.2s ease;
 }
 
 .menuButton:hover,
 .menuButton:focus-visible {
-  background-color: #f3eeea;
+  background-color: rgba(248, 246, 244, 0.85);
   border-color: rgba(217, 4, 41, 0.25);
   transform: translateY(-1px);
 }
@@ -61,7 +61,7 @@
   font-size: 1.2rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #7a706a;
+  color: var(--muted);
   font-weight: 600;
 }
 
@@ -95,17 +95,17 @@
 }
 
 .statusDone {
-  background-color: #f3eeea;
-  color: #3c332f;
-  border: 1px solid #e2dad4;
+  background-color: var(--brand-color-light);
+  color: var(--brand-foreground);
+  border: 1px solid rgba(217, 4, 41, 0.25);
 }
 
 .userChip {
   width: 3.6rem;
   height: 3.6rem;
   border-radius: 50%;
-  background: #3c332f;
-  color: #ffffff;
+  background: var(--foreground);
+  color: var(--brand-foreground);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -118,17 +118,16 @@
   width: 82%;
   min-width: 28.5rem;
   max-width: 40rem;
-  background: #ffffff;
+  background: var(--card-background);
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  border-right: 1px solid #e2dad4;
-  padding: 2.4rem 2.2rem;
+  border-right: 1px solid var(--border);
+  padding:1rem 2.2rem 2.4rem;
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
-  z-index: -1;
   opacity: 0;
   transform: translateX(-100%);
   transform-origin: left;
@@ -146,8 +145,8 @@
   align-items: center;
   gap: 1rem;
   justify-content: space-between;
-  padding-bottom: 1.6rem;
-  border-bottom: 1px solid #e2dad4;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .sidebarLogo {
@@ -155,6 +154,13 @@
   font-weight: 700;
   color: var(--brand-color);
   letter-spacing: -0.01em;
+  display: flex;
+  flex-direction: column;
+  line-height:1.4;
+}
+
+.brandTagline{
+  font-size:1rem
 }
 
 .sidebarActions {
@@ -165,13 +171,13 @@
 
 .mode {
   border-radius: 50%;
-  background-color: #f3eeea;
+  background-color: rgba(248, 246, 244, 0.8);
   width: 3.6rem;
   height: 3.6rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #3c332f;
+  color: var(--foreground);
   border: 1px solid transparent;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
@@ -189,29 +195,29 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #3c332f;
-  border: 1px solid #e2dad4;
-  background-color: #ffffff;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  background-color: var(--card-background);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .closeButton:hover,
 .closeButton:focus-visible {
-  background-color: #f3eeea;
+  background-color: rgba(248, 246, 244, 0.85);
   transform: translateY(-1px);
 }
 
 .loginDiv {
   margin-top: auto;
   padding-top: 1.5rem;
-  border-top: 1px solid #e2dad4;
+  border-top: 1px solid var(--border);
 }
 
 .loginBtn,
 .logoutBtn {
   width: 100%;
   padding: 1.1rem;
-  color: #ffffff;
+  color: var(--brand-foreground);
   border-radius: 0.9rem;
   font-size: 1.6rem;
   display: inline-flex;
@@ -223,7 +229,7 @@
 }
 
 .loginBtn {
-  background-color: #3c332f;
+  background-color: var(--foreground);
 }
 
 .logoutBtn {
@@ -236,18 +242,12 @@
   box-shadow: 0 16px 28px -26px rgba(45, 38, 35, 0.5);
 }
 
-@media screen and (max-width: 640px) {
-  .brandTagline {
-    display: none;
-  }
-}
-
 @media screen and (min-width: 1280px) {
   .sidebarWrapper {
     opacity: 1;
     transform: translateX(0);
     z-index: 1001;
-    background: #ffffff;
+    background: var(--card-background);
     left: auto;
     width: 40rem;
     max-width: 100%;

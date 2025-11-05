@@ -61,7 +61,6 @@ export default function Nav() {
             </button>
             <Link href="/" className={s.brand}>
               <span className={s.brandTitle}>KeepKaro</span>
-              <span className={s.brandTagline}>Notes kept simple</span>
             </Link>
           </div>
           <div className={s.navRight} aria-live="polite">

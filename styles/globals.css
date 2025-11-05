@@ -1,5 +1,17 @@
 :root {
   --brand-color: #d90429;
+  --brand-color-light: rgba(217, 4, 41, 0.9);
+  --brand-foreground: #ffffff;
+  --background: #f8f6f4;
+  --background-soft: rgba(248, 246, 244, 0.9);
+  --card-background: #ffffff;
+  --foreground: #2d2623;
+  --muted: #7a706a;
+  --border: #e2dad4;
+  --divider: rgba(226, 218, 212, 0.6);
+  --badge-background: #ffffff;
+  --scroll-thumb: #d6cfc9;
+  --brand-border-soft: rgba(217, 4, 41, 0.18);
 }
 
 /*
@@ -49,8 +61,8 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
-  background-color: #f8f6f4;
-  color: #2d2623;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 html:focus-within {
