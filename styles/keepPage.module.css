@@ -1,33 +1,63 @@
 .keepPage {
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
-  padding-block: 2.6rem 4.6rem;
+  gap: 2.2rem;
+  padding: 2.6rem clamp(1.6rem, 4vw, 3.6rem) 4.6rem;
   min-height: calc(100% - 6.5rem);
 }
 
-.keepPage input,
-.keepPage textarea,
-.title,
-.content {
-  font-size: 1.9rem;
-  width: 100%;
-  padding: 1.4rem 1.6rem;
-  border-radius: var(--radius-lg);
-  outline: none;
+.editorCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 2.2rem;
   border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   background-color: var(--card-background);
-  color: var(--foreground);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 12px 28px -28px rgba(45, 38, 35, 0.2);
+  box-shadow: 0 16px 32px -32px rgba(45, 38, 35, 0.18);
+  width: min(100%, 84rem);
+  margin-inline: auto;
+  flex: 1;
 }
 
-.keepPage textarea {
-  flex-grow: 1;
+.titleField {
+  font-size: clamp(2.1rem, 2.6vw, 2.4rem);
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--foreground);
+  padding: 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.titleField::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.titleField:focus,
+.titleField:active {
+  border-bottom-color: rgba(217, 4, 41, 0.35);
+}
+
+.bodyField {
+  min-height: 34rem;
+  flex: 1;
+  min-height: 0;
+  border: none;
+  outline: none;
   resize: none;
-  min-height: 28rem;
-  line-height: 1.6;
-  margin-top: 1.2rem;
+  font-size: 1.7rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  background: transparent;
+}
+
+.bodyField::placeholder {
+  color: var(--muted);
+  opacity: 0.75;
 }
 
 .keepPage input:focus,
@@ -35,26 +65,21 @@
 .keepPage textarea:focus,
 .keepPage textarea:active {
   border-color: var(--brand-color);
-  box-shadow: 0 16px 42px -30px rgba(217, 4, 41, 0.25);
-}
-
-.keepPage input::placeholder,
-.keepPage textarea::placeholder {
-  color: #7a706a;
-  opacity: 0.9;
 }
 
 .keepInfo {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1.4rem;
+  gap: 1.2rem;
   margin-block: 0.4rem 0;
-  padding: 1.6rem 1.8rem;
+  padding: 1.4rem 1.8rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--card-background);
-  box-shadow: 0 14px 32px -32px rgba(45, 38, 35, 0.18);
+  box-shadow: 0 12px 28px -30px rgba(45, 38, 35, 0.16);
+  width: min(100%, 84rem);
+  margin-inline: auto;
 }
 
 .keepInfo p {
@@ -66,24 +91,24 @@
 
 .keepInfo button {
   flex: 0 0 auto;
-  padding: 0.9rem 1.6rem;
-  font-size: 1.5rem;
-  color: var(--brand-foreground);
-  background-color: var(--brand-color);
-  border-radius: 999px;
-  border: 1px solid var(--brand-color);
+  padding: 0.9rem 1.4rem;
+  font-size: var(--button-font-size);
+  color: var(--brand-color);
+  background-color: transparent;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--brand-border-soft);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
 }
 
 .keepInfo button:hover,
 .keepInfo button:focus-visible {
-  background-color: rgba(217, 4, 41, 0.9);
+  background-color: rgba(217, 4, 41, 0.12);
   border-color: var(--brand-color);
-  box-shadow: 0 14px 28px -24px rgba(217, 4, 41, 0.4);
+  color: var(--brand-color);
 }
 
 .keepInfo button:active {
@@ -92,27 +117,33 @@
 
 .title,
 .content {
-  background-color: #f3eeea;
-  border: 1px solid transparent;
+  background-color: transparent;
+  border: none;
+  padding: 0;
   box-shadow: none;
 }
 
 .title {
   font-weight: 600;
-  color: #2d2623;
+  color: var(--foreground);
+  font-size: clamp(2.1rem, 2.5vw, 2.4rem);
 }
 
 .content {
   white-space: break-spaces;
   overflow-wrap: break-word;
   line-height: 1.7;
-  color: #463d37;
+  color: var(--foreground);
   margin-top: 1.2rem;
 }
 
 .content a {
   color: var(--brand-color);
   font-weight: 500;
+}
+
+.readCard {
+  gap: 1.6rem;
 }
 
 .toolbarWrapper {
@@ -127,19 +158,19 @@
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  border: 1px solid #e2dad4;
-  border-radius: 999px;
-  padding: 0.6rem 1.2rem;
-  background-color: #ffffff;
-  box-shadow: 0 16px 32px -30px rgba(45, 38, 35, 0.35);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.6rem 1.4rem;
+  background-color: var(--card-background);
+  box-shadow: 0 14px 32px -30px rgba(45, 38, 35, 0.18);
 }
 
 .toolbar button {
-  font-size: 1.5rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
+  font-size: 1.4rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-md);
   border: 1px solid transparent;
-  color: #3c332f;
+  color: var(--foreground);
   transition: background-color 0.2s ease, color 0.2s ease,
     border-color 0.2s ease, transform 0.2s ease;
 }
@@ -156,7 +187,7 @@
 }
 
 .editBtn {
-  color: #3c332f !important;
+  color: var(--foreground) !important;
 }
 
 .dltBtn {
@@ -185,7 +216,7 @@
 
 @media screen and (min-width: 1280px) {
   .keepPage {
-    padding: 3rem 0 5rem 40rem;
+    padding: 3rem 3.6rem 5rem 40rem;
     min-height: 100%;
   }
 

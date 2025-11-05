@@ -179,26 +179,30 @@ export default function KeepPage() {
           </button>
         </div>
         {edit && isOwn ? (
-          <>
+          <section className={s.editorCard}>
             <input
+              className={s.titleField}
               name="title"
               value={title}
               onChange={changeTitle}
               type="text"
-              placeholder="Title of the Keep"
+              placeholder="Give this keep a title"
               maxLength={100}
             />
 
             <textarea
+              className={s.bodyField}
               wrap="hard"
               name="content"
               value={content}
               onChange={changeContent}
-              placeholder="Type your content here"
+              placeholder="Capture your thoughts, lists, or links here…"
             />
-          </>
+          </section>
         ) : (
-          <ReadContent title={title} content={content} />
+          <section className={`${s.editorCard} ${s.readCard}`}>
+            <ReadContent title={title} content={content} />
+          </section>
         )}
       </div>
     </>
