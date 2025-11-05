@@ -1,33 +1,92 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { v4 as uuidv4 } from 'uuid'
+import { toast } from 'react-hot-toast'
 import Loading from '../components/loading'
 import { useAuth } from '../contexts/auth/authContext'
 import { useKeepsList } from '../contexts/keepLists'
+import { createKeep } from '../lib/helper'
 import s from '../styles/Home.module.css'
 
 export default function Home() {
   const { data, loading } = useKeepsList()
 
   const { user } = useAuth()
-  const recents = JSON.parse(localStorage.getItem('recents'))
+  const router = useRouter()
 
-  // Getting share Data
-  const parsedUrl = new URL(window.location.toString())
-  const title = parsedUrl.searchParams.get('title')
-  const text = parsedUrl.searchParams.get('text')
+  const [recents, setRecents] = useState([])
+  const [sharePayload, setSharePayload] = useState({
+    title: '',
+    text: '',
+  })
 
   const [isCopied, setIsCopied] = useState(false)
-
   const shareRef = useRef()
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    try {
+      const storedRecents = window.localStorage.getItem('recents')
+      setRecents(storedRecents ? JSON.parse(storedRecents) : [])
+    } catch (error) {
+      console.log(error)
+      setRecents([])
+    }
+
+    try {
+      const parsedUrl = new URL(window.location.href)
+      const title = parsedUrl.searchParams.get('title') || ''
+      const text = parsedUrl.searchParams.get('text') || ''
+      setSharePayload({ title, text })
+    } catch (error) {
+      console.log(error)
+      setSharePayload({ title: '', text: '' })
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isCopied) return
+    const timer = setTimeout(() => setIsCopied(false), 2500)
+    return () => clearTimeout(timer)
+  }, [isCopied])
+
+  const handleCreateKeep = async () => {
+    if (!user) {
+      toast.error(<b>Please sign in to create a new keep.</b>)
+      return
+    }
+
+    if (data?.length > 15) {
+      toast.error(
+        <b>Maximum keeps reached. Delete an old keep to add a new one.</b>
+      )
+      return
+    }
+
+    try {
+      const keepId = uuidv4()
+      await createKeep(keepId, user.uid, user.displayName || 'User')
+      toast.success(<b>New keep ready.</b>)
+      router.push('/keep/' + keepId)
+    } catch (error) {
+      console.log(error.message)
+      toast.error(<b>{error.message}</b>)
+    }
+  }
 
   // Functions
   // COpy to clipboard
   const handleCopy = () => {
-    const value = shareRef.current.innerText
+    const value = shareRef.current?.innerText?.trim()
+    if (!value) return
     if (navigator.clipboard) {
       navigator.clipboard.writeText(value)
       setIsCopied(true)
+    } else {
+      toast.error(<b>Clipboard is not available on this device.</b>)
     }
   }
 
@@ -42,56 +101,113 @@ export default function Home() {
       </Head>
 
       <div className={`${s.homePage} wrapper`}>
-        {!!title || !!text ? (
-          <>
-            <p className={s.shareP}>Share Data:</p>
-            <div className={s.shareData} ref={shareRef}>
-              {title} <br />
-              {text}
-            </div>
-            <div className={s.btnDiv}>
-              <button onClick={handleCopy}>
-                {isCopied ? 'Copied' : 'Copy'}
+        <section className={s.hero}>
+          <div className={s.heroContent}>
+            <p className={s.welcomeBadge}>Welcome back</p>
+            <h1>
+              {user?.displayName
+                ? `${user.displayName.split(' ')[0]}, your ideas are safe here.`
+                : 'KeepKaro keeps your ideas within reach.'}
+            </h1>
+            <p className={s.heroCopy}>
+              Capture quick thoughts, long-form notes, and links — then revisit
+              them anywhere. Start something new or jump into what you were
+              working on last.
+            </p>
+            <div className={s.heroActions}>
+              <button onClick={handleCreateKeep} className={s.primaryAction}>
+                Start a new keep
               </button>
-              <Link href="/">Cancel</Link>
+              {data?.length ? (
+                <Link
+                  href={'/keep/' + data[0]?.keepId}
+                  className={s.secondaryAction}
+                >
+                  Open latest keep
+                </Link>
+              ) : null}
             </div>
-          </>
+          </div>
+        </section>
+
+        {sharePayload.title || sharePayload.text ? (
+          <section className={s.shareCard}>
+            <div className={s.shareHeader}>
+              <h2>Shared to you</h2>
+              <p>Copy the message below or head back to your dashboard.</p>
+            </div>
+            <div className={s.shareContent} ref={shareRef}>
+              {sharePayload.title && (
+                <strong>{sharePayload.title}</strong>
+              )}
+              {sharePayload.text ? (
+                <span>{sharePayload.text}</span>
+              ) : null}
+            </div>
+            <div className={s.shareActions}>
+              <button onClick={handleCopy} className={s.copyAction}>
+                {isCopied ? 'Copied!' : 'Copy to clipboard'}
+              </button>
+              <Link href="/" className={s.dismissAction}>
+                Dismiss
+              </Link>
+            </div>
+          </section>
         ) : null}
 
-        <h1>Welcome {user?.displayName || 'User'}</h1>
+        <section className={s.section}>
+          <div className={s.sectionHeader}>
+            <h2>Recently viewed</h2>
+            <span>Handy quick access to your last 3 notes.</span>
+          </div>
+          {recents?.length ? (
+            <div className={s.keepLists}>
+              {recents.map((keep) => (
+                <Link
+                  className={s.keep}
+                  key={keep?.keepId}
+                  href={'/keep/' + keep?.keepId}
+                >
+                  <span>{keep.title}</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className={s.noData}>
+              Recent keeps will show up here once you open a note.
+            </p>
+          )}
+        </section>
 
-        <h3 className={s.recentlyViewed}>Recently Viewed</h3>
-        {recents?.length ? (
-          <div className={s.keepLists}>
-            {recents.map((keep) => (
-              <Link
-                className={s.keep}
-                key={keep?.keepId}
-                href={'/keep/' + keep?.keepId}
-              >
-                {keep.title}
-              </Link>
-            ))}
+        <section className={s.section}>
+          <div className={s.sectionHeader}>
+            <h2>Your keeps</h2>
+            <span>
+              {data?.length
+                ? `You have ${data.length} ${
+                    data.length === 1 ? 'keep' : 'keeps'
+                  } saved.`
+                : 'Create your first keep to get started.'}
+            </span>
           </div>
-        ) : (
-          <p className={s.noData}>No Recents data found</p>
-        )}
-        <h3>Your Keeps</h3>
-        {data?.length ? (
-          <div className={s.keepLists}>
-            {data.map((keep) => (
-              <Link
-                className={s.keep}
-                key={keep?.keepId}
-                href={'/keep/' + keep?.keepId}
-              >
-                {keep.title}
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <p className={s.noData}>No Keep found try to add one!</p>
-        )}
+          {data?.length ? (
+            <div className={s.keepLists}>
+              {data.map((keep) => (
+                <Link
+                  className={s.keep}
+                  key={keep?.keepId}
+                  href={'/keep/' + keep?.keepId}
+                >
+                  <span>{keep.title}</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className={s.noData}>
+              No keeps yet. Tap “Start a new keep” to draft your first one.
+            </p>
+          )}
+        </section>
       </div>
     </>
   )

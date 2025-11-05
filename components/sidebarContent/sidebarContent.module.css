@@ -1,59 +1,163 @@
-.scrollable {
-  font-size: 2rem;
-  overflow-y: scroll;
-  margin-block: 1.5rem;
+.sidebarBody {
   display: flex;
   flex-direction: column;
-}
-.scrollableContent {
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
+  gap: 1.6rem;
+  flex: 1 1 auto;
+  font-size: 1.5rem;
 }
 
 .newKeepBtn {
-  background-color: var(--color-darkblue);
-  color: var(--color-fullwhite);
+  background-color: var(--brand-color);
+  color: #ffffff;
   width: 100%;
-  padding: 0.5em 0;
-  border-radius: 0.7rem;
-  margin-bottom: 2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1.1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 14px 28px -20px rgba(217, 4, 41, 0.65);
 }
 
-.scrollable a {
-  color: var(--color-darkblue);
+.newKeepBtn svg {
+  font-size: 1.8rem;
+}
+
+.newKeepBtn:hover,
+.newKeepBtn:focus-visible {
+  transform: translateY(-1px);
+  background-color: #b90323;
+}
+
+.keepList {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1 1 auto;
+  padding-right: 0.6rem;
+}
+
+.keepList::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.keepList::-webkit-scrollbar-thumb {
+  background-color: #d6cfc9;
+  border-radius: 999px;
+}
+
+.keepItem {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.1rem 1.2rem;
+  color: #2d2623;
   font-weight: 500;
-  padding-block: 0.7em;
-  border-bottom: 1px solid var(--color-lightblue);
+  border-radius:0.3rem;
+  background-color: transparent;
   position: relative;
-  white-space: nowrap;
-  overflow: hidden;
+  transition: color 0.2s ease, background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.keepItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  width: 0.28rem;
+  border-radius: 0.4rem;
+  background-color: var(--brand-color);
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.keepItem::after {
+  content: '';
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  bottom: 0;
+  border-bottom: 1px solid rgba(226, 218, 212, 0.6);
+}
+
+.keepItem:last-of-type::after {
+  display: none;
+}
+
+.keepItem:hover {
+  background-color: rgba(217, 4, 41, 0.08);
+}
+
+.keepItem:global(.active) {
+  color: var(--brand-color);
+}
+
+.keepItem:global(.active)::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.keepBadge {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.7rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(217, 4, 41, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--brand-color);
   flex-shrink: 0;
 }
 
-.scrollable a:global(.active) {
-  color: var(--color-red-1);
+
+.keepTitle {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size:1.7rem
 }
 
-.gradient {
-  background-image: var(--gradient-sidenav);
-  width: 5rem;
-  height: 90%;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
+.placeholder {
+  padding: 1.4rem 1.2rem;
+  border-radius: 1.1rem;
+  background-color: #f9f6f4;
+  color: #7a706a;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
 }
 
-@media screen and (min-width: 1280px) {
-  .scrollableContent::-webkit-scrollbar {
-    width: 0.7rem;
-  }
-  .scrollableContent {
-    padding-right: 1.1rem;
-  }
-  .scrollableContent::-webkit-scrollbar-thumb {
-    background-color: var(--color-toolbarborder);
-    border-radius: 50vw;
-  }
+.placeholder p {
+  font-weight: 600;
+  color: #2d2623;
+}
+
+.placeholder button {
+  border: none;
+  background: none;
+  color: var(--brand-color);
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.placeholder button:hover,
+.placeholder button:focus-visible {
+  text-decoration: underline;
 }

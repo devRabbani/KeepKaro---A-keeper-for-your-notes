@@ -46,25 +46,43 @@ export default function SidebarContent({ user, setIsMenu }) {
   }
 
   return (
-    <div className={s.scrollable}>
+    <div className={s.sidebarBody}>
       <button onClick={handleNewKeep} className={s.newKeepBtn}>
-        New Keep <RiAddCircleLine />
+        <RiAddCircleLine />
+        New keep
       </button>
-      <div className={s.scrollableContent}>
+      <div className={s.keepList}>
         {loading ? (
-          <p>Getting Keeps list..</p>
+          <p className={s.placeholder}>Loading keeps…</p>
+        ) : data?.length ? (
+          data.map((keep) => {
+            const title = keep.title?.trim() || 'Untitled keep'
+            const badge = title.charAt(0).toUpperCase()
+            const isActive = keepIdUrl === keep.keepId
+            return (
+              <>
+              
+       
+              <Link
+                onClick={handleClick}
+                href={'/keep/' + keep.keepId}
+                key={keep.keepId}
+                className={`${s.keepItem} ${isActive ? 'active' : ''}`}
+              >
+                <span className={s.keepBadge}>{badge}</span>
+                <span className={s.keepTitle}>{title}</span>
+                </Link>
+                <div className={s.keepSeparator} />
+              </>
+            )
+          })
         ) : (
-          data?.map((keep) => (
-            <Link
-              onClick={handleClick}
-              href={'/keep/' + keep.keepId}
-              key={keep.keepId}
-              className={keepIdUrl === keep.keepId ? 'active' : ''}
-            >
-              {keep.title}
-              <div className={s.gradient} />
-            </Link>
-          ))
+          <div className={s.placeholder}>
+            <p>No keeps yet.</p>
+            <button type="button" onClick={handleNewKeep}>
+              Create your first keep
+            </button>
+          </div>
         )}
       </div>
     </div>
