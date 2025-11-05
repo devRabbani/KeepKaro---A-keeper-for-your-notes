@@ -40,6 +40,9 @@
 .menuButton:focus-visible {
   background-color: rgba(251, 248, 245, 0.88);
   border-color: rgba(217, 4, 41, 0.25);
+}
+
+.menuButton:active {
   transform: translateY(-1px);
 }
 
@@ -188,6 +191,9 @@
 .mode:hover,
 .mode:focus-visible {
   background-color: rgba(251, 248, 245, 0.88);
+}
+
+.mode:active {
   transform: translateY(-1px);
 }
 
@@ -207,6 +213,9 @@
 .closeButton:hover,
 .closeButton:focus-visible {
   background-color: rgba(251, 248, 245, 0.88);
+}
+
+.closeButton:active {
   transform: translateY(-1px);
 }
 
@@ -245,7 +254,6 @@
 
 .loginBtn:hover,
 .logoutBtn:hover {
-  transform: translateY(-1px);
   box-shadow: 0 16px 28px -26px rgba(45, 38, 35, 0.5);
 }
 
@@ -254,6 +262,11 @@
   background-color: rgba(217, 4, 41, 0.14);
   border-color: var(--brand-color);
   color: var(--brand-color);
+}
+
+.loginBtn:active,
+.logoutBtn:active {
+  transform: translateY(-1px);
 }
 
 @media screen and (min-width: 1280px) {

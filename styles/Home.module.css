@@ -9,10 +9,10 @@
   position: relative;
   border-radius: 2rem;
   padding: clamp(2.4rem, 4vw, 4.4rem);
-  background-color: #ffffff;
-  border: 1px solid #e2dad4;
-  color: #2d2623;
-  box-shadow: 0 18px 36px -28px rgba(45, 38, 35, 0.35);
+  background-color: var(--card-background);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  box-shadow: 0 16px 32px -30px rgba(45, 38, 35, 0.15);
 }
 
 .heroContent {
@@ -42,7 +42,7 @@
 
 .heroCopy {
   font-size: clamp(1.6rem, 2.2vw, 1.9rem);
-  color: #6f6560;
+  color: var(--muted);
 }
 
 .heroActions {
@@ -65,51 +65,57 @@
 
 .primaryAction {
   background-color: var(--brand-color);
-  color: #ffffff;
-  box-shadow: 0 16px 28px -20px rgba(217, 4, 41, 0.65);
+  color: var(--brand-foreground);
+  box-shadow: 0 16px 28px -24px rgba(217, 4, 41, 0.45);
 }
 
 .primaryAction:hover,
 .primaryAction:focus-visible {
-  transform: translateY(-1px);
   box-shadow: 0 16px 42px -22px rgba(217, 4, 41, 0.7);
+}
+
+.primaryAction:active {
+  transform: translateY(-1px);
 }
 
 .secondaryAction {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
-  background-color: #f3eeea;
-  color: #2d2623;
-  border: 1px solid #e2dad4;
+  background-color: var(--card-background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
 }
 
 .secondaryAction:hover,
 .secondaryAction:focus-visible {
-  transform: translateY(-1px);
   background-color: #ebe4df;
 }
 
+.secondaryAction:active {
+  transform: translateY(-1px);
+}
+
 .shareCard {
-  background-color: #ffffff;
+  background-color: var(--card-background);
   border-radius: 1.8rem;
   padding: clamp(2rem, 3vw, 2.6rem);
-  border: 1px solid #e2dad4;
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
-  box-shadow: 0 14px 32px -26px rgba(45, 38, 35, 0.35);
+  box-shadow: 0 12px 28px -28px rgba(45, 38, 35, 0.15);
 }
 
 .shareHeader h2 {
   font-size: 2.2rem;
   font-weight: 600;
-  color: #2d2623;
+  color: var(--foreground);
 }
 
 .shareHeader p {
   font-size: 1.6rem;
-  color: #7a706a;
+  color: var(--muted);
   margin-top: 0.3rem;
 }
 
@@ -117,12 +123,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  background-color: #f3eeea;
+  background-color: rgba(217, 4, 41, 0.04);
   border-radius: 1.2rem;
   padding: 1.6rem;
   font-size: 1.7rem;
-  color: #2d2623;
-  border: 1px dashed #d7cfc9;
+  color: var(--foreground);
+  border: 1px dashed var(--border);
   white-space: pre-wrap;
 }
 
@@ -158,9 +164,12 @@
 
 .copyAction:hover,
 .copyAction:focus-visible {
-  transform: translateY(-1px);
   background-color: #b90323;
   border-color: #b90323;
+}
+
+.copyAction:active {
+  transform: translateY(-1px);
 }
 
 .dismissAction {
@@ -171,8 +180,11 @@
 
 .dismissAction:hover,
 .dismissAction:focus-visible {
-  transform: translateY(-1px);
   background-color: #f3eeea;
+}
+
+.dismissAction:active {
+  transform: translateY(-1px);
 }
 
 .section {
@@ -244,7 +256,7 @@
 
 @media screen and (min-width: 1024px) {
   .homePage {
-    padding: 4.6rem 0 7rem;
+    padding: 3rem 0 7rem;
   }
 
   .shareCard {
@@ -254,7 +266,6 @@
 
 @media screen and (min-width: 1280px) {
   .homePage {
-    padding: 4.6rem 0 8rem 40rem;
-    margin-top: -4.5rem;
+    padding: 3rem 0 8rem 40rem;
   }
 }

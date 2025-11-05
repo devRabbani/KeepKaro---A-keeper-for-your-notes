@@ -13,13 +13,13 @@
   font-size: 1.9rem;
   width: 100%;
   padding: 1.4rem 1.6rem;
-  border-radius: 1.4rem;
+  border-radius: var(--radius-lg);
   outline: none;
-  border: 1px solid #e2dad4;
-  background-color: #ffffff;
-  color: #2d2623;
+  border: 1px solid var(--border);
+  background-color: var(--card-background);
+  color: var(--foreground);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 14px 32px -30px rgba(45, 38, 35, 0.35);
+  box-shadow: 0 12px 28px -28px rgba(45, 38, 35, 0.2);
 }
 
 .keepPage textarea {
@@ -35,7 +35,7 @@
 .keepPage textarea:focus,
 .keepPage textarea:active {
   border-color: var(--brand-color);
-  box-shadow: 0 18px 46px -30px rgba(217, 4, 41, 0.35);
+  box-shadow: 0 16px 42px -30px rgba(217, 4, 41, 0.25);
 }
 
 .keepPage input::placeholder,
@@ -51,27 +51,27 @@
   gap: 1.4rem;
   margin-block: 0.4rem 0;
   padding: 1.6rem 1.8rem;
-  border: 1px solid #e2dad4;
-  border-radius: 1.6rem;
-  background: #ffffff;
-  box-shadow: 0 18px 40px -32px rgba(45, 38, 35, 0.35);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card-background);
+  box-shadow: 0 14px 32px -32px rgba(45, 38, 35, 0.18);
 }
 
 .keepInfo p {
   flex: 1 1 18rem;
   font-size: 1.5rem;
   text-transform: capitalize;
-  color: #7a706a;
+  color: var(--muted);
 }
 
 .keepInfo button {
   flex: 0 0 auto;
   padding: 0.9rem 1.6rem;
   font-size: 1.5rem;
-  color: #ffffff;
+  color: var(--brand-foreground);
   background-color: var(--brand-color);
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: 1px solid var(--brand-color);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -81,9 +81,13 @@
 
 .keepInfo button:hover,
 .keepInfo button:focus-visible {
+  background-color: rgba(217, 4, 41, 0.9);
+  border-color: var(--brand-color);
+  box-shadow: 0 14px 28px -24px rgba(217, 4, 41, 0.4);
+}
+
+.keepInfo button:active {
   transform: translateY(-1px);
-  background-color: #b90323;
-  box-shadow: 0 18px 36px -26px rgba(217, 4, 41, 0.6);
 }
 
 .title,
@@ -142,10 +146,13 @@
 
 .toolbar button:hover,
 .toolbar button:focus-visible {
-  transform: translateY(-1px);
   border-color: rgba(217, 4, 41, 0.35);
   background-color: rgba(217, 4, 41, 0.08);
   color: var(--brand-color);
+}
+
+.toolbar button:active {
+  transform: translateY(-1px);
 }
 
 .editBtn {
@@ -178,8 +185,7 @@
 
 @media screen and (min-width: 1280px) {
   .keepPage {
-    padding: 3.6rem 0 5rem 40rem;
-    margin-top: -6.5rem;
+    padding: 3rem 0 5rem 40rem;
     min-height: 100%;
   }
 
