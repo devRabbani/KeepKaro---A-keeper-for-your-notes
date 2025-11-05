@@ -1,17 +1,21 @@
 :root {
   --brand-color: #d90429;
-  --brand-color-light: rgba(217, 4, 41, 0.9);
+  --brand-color-light: rgba(217, 4, 41, 0.92);
   --brand-foreground: #ffffff;
-  --background: #f8f6f4;
-  --background-soft: rgba(248, 246, 244, 0.9);
-  --card-background: #ffffff;
-  --foreground: #2d2623;
-  --muted: #7a706a;
-  --border: #e2dad4;
-  --divider: rgba(226, 218, 212, 0.6);
-  --badge-background: #ffffff;
-  --scroll-thumb: #d6cfc9;
-  --brand-border-soft: rgba(217, 4, 41, 0.18);
+  --background: #fbf8f5;
+  --background-soft: rgba(251, 248, 245, 0.94);
+  --card-background: #fefcfa;
+  --foreground: #3a312c;
+  --muted: #8c827b;
+  --border: #ede4dd;
+  --divider: rgba(225, 216, 209, 0.7);
+  --badge-background: rgba(255, 255, 255, 0.8);
+  --scroll-thumb: rgba(208, 200, 194, 0.7);
+  --brand-border-soft: rgba(217, 4, 41, 0.16);
+  --radius-lg: 1.4rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.6rem;
+  --button-font-size: 1.5rem;
 }
 
 /*
