@@ -69,50 +69,161 @@
 
 .keepInfo {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 1.2rem;
-  margin-block: 0.4rem 0;
-  padding: 1.4rem 1.8rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--card-background);
-  box-shadow: 0 12px 28px -30px rgba(45, 38, 35, 0.16);
+  flex-wrap: wrap;
+  background: transparent;
   width: min(100%, 84rem);
   margin-inline: auto;
 }
 
-.keepInfo p {
-  flex: 1 1 18rem;
-  font-size: 1.5rem;
-  text-transform: capitalize;
-  color: var(--muted);
-}
-
-.keepInfo button {
-  flex: 0 0 auto;
-  padding: 0.9rem 1.4rem;
-  font-size: var(--button-font-size);
-  color: var(--brand-color);
-  background-color: transparent;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--brand-border-soft);
+.infoMeta {
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.6rem;
-  transition: color 0.2s ease, background-color 0.2s ease,
-    border-color 0.2s ease, transform 0.2s ease;
+  min-width: 0;
+  white-space: nowrap;
+  flex: 1 1 auto;
 }
 
-.keepInfo button:hover,
-.keepInfo button:focus-visible {
-  background-color: rgba(217, 4, 41, 0.12);
-  border-color: var(--brand-color);
-  color: var(--brand-color);
+.infoLabel {
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1;
 }
 
-.keepInfo button:active {
+.infoValue {
+  font-size: clamp(1.7rem, 2vw, 1.9rem);
+  font-weight: 600;
+  color: var(--foreground);
+  text-transform: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 28ch;
+  line-height: 1.2;
+}
+
+.infoActions {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 0 0 auto;
+  margin-left: auto;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  position: relative;
+}
+
+.infoActions .toolbarWrapper {
+  position: static;
+  display: flex;
+  padding: 0;
+  background: transparent;
+  order: 1;
+}
+
+.infoActions .toolbar {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  gap: 0.8rem;
+}
+
+.infoActions .shareButton {
+  order: 2;
+  margin-left: 1.6rem;
+  position: relative;
+}
+
+.infoActions .shareButton::before {
+  content: '';
+  position: absolute;
+  left: -0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background-color: rgba(45, 38, 35, 0.18);
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+  border: none;
+  color: var(--foreground);
+  background-color: transparent;
+  transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.iconButton svg {
+  font-size: 2.1rem;
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  color: var(--foreground);
+  box-shadow: 0 8px 20px -18px rgba(26, 24, 23, 0.4);
   transform: translateY(-1px);
+  background-color: rgba(45, 38, 35, 0.08);
+}
+
+.iconButton:active {
+  transform: translateY(0);
+}
+
+.iconButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.shareButton {
+  color: var(--foreground);
+}
+
+.shareButton:hover,
+.shareButton:focus-visible {
+  color: var(--foreground);
+}
+
+.shareButton:disabled {
+  color: var(--muted);
+  box-shadow: none;
+}
+
+.iconButton[data-loading='true'] {
+  pointer-events: none;
+  opacity: 0.55;
+  box-shadow: none;
+}
+
+.iconButton[data-loading='true'] svg {
+  animation: rotatePulse 0.8s ease-in-out 1;
+}
+
+@keyframes rotatePulse {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(18deg);
+  }
+  100% {
+    transform: rotate(-18deg);
+  }
 }
 
 .title,
@@ -132,10 +243,11 @@
 .content {
   white-space: break-spaces;
   overflow-wrap: break-word;
+  font-size: 1.7rem;
   line-height: 1.7;
   color: var(--foreground);
-  margin-top: 1.2rem;
 }
+
 
 .content a {
   color: var(--brand-color);
@@ -144,6 +256,9 @@
 
 .readCard {
   gap: 1.6rem;
+  background: rgba(217, 4, 41, 0.015);
+  border: 1px solid rgba(217, 4, 41, 0.1);
+  box-shadow: 0 18px 30px -34px rgba(217, 4, 41, 0.12);
 }
 
 .toolbarWrapper {
@@ -157,7 +272,7 @@
 .toolbar {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 0.6rem 1.4rem;
@@ -165,51 +280,86 @@
   box-shadow: 0 14px 32px -30px rgba(45, 38, 35, 0.18);
 }
 
-.toolbar button {
-  font-size: 1.4rem;
-  padding: 0.5rem 1.1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid transparent;
-  color: var(--foreground);
-  transition: background-color 0.2s ease, color 0.2s ease,
-    border-color 0.2s ease, transform 0.2s ease;
-}
-
-.toolbar button:hover,
-.toolbar button:focus-visible {
-  border-color: rgba(217, 4, 41, 0.35);
-  background-color: rgba(217, 4, 41, 0.08);
-  color: var(--brand-color);
-}
-
-.toolbar button:active {
-  transform: translateY(-1px);
-}
-
 .editBtn {
-  color: var(--foreground) !important;
+  color: var(--foreground);
+  border-color: var(--border);
 }
 
 .dltBtn {
-  color: var(--brand-color) !important;
+  color: var(--foreground);
 }
 
-.keepInfo .toolbarWrapper {
-  display: none;
+.keepInfo .toolbar {
+  display: flex;
+  width: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.keepInfo .toolbar button {
+  flex: 0 0 auto;
+  width: 4.2rem;
+  height: 4.2rem;
+  min-width: 4.2rem;
+  min-height: 4.2rem;
+  font-size: 2.1rem;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media screen and (min-width: 768px) {
   .keepInfo {
-    gap: 1.8rem;
+    gap: 1.6rem;
   }
 
-  .keepInfo .toolbarWrapper {
-    display: block;
-    margin-left: auto;
-    position: static;
+  .infoActions {
+    gap: 0;
   }
 
   .toolbarWrapper {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .keepInfo {
+    gap: 1rem;
+  }
+
+  .infoMeta {
+    flex-basis: 100%;
+  }
+
+  .infoActions {
+    flex-basis: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+    padding-top: 0.8rem;
+    border-top: 1px dashed rgba(45, 38, 35, 0.18);
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .infoActions .shareButton {
+    margin-left: 0;
+  }
+
+  .infoActions .shareButton::before {
     display: none;
   }
 }

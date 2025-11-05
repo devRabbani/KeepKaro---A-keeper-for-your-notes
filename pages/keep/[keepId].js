@@ -155,28 +155,35 @@ export default function KeepPage() {
         <title>{title || 'Keep'} | KeepKaro</title>
       </Head>
       <div className={`${s.keepPage} wrapper`}>
-        {isOwn ? (
-          <Toolbar
-            keepId={keepId}
-            edit={edit}
-            setEdit={setEdit}
-            uid={user?.uid}
-          />
-        ) : null}
-
         <div className={s.keepInfo}>
-          <p>Kept by {name || 'User'}</p>
-          {isOwn ? (
-            <Toolbar
-              keepId={keepId}
-              edit={edit}
-              setEdit={setEdit}
-              uid={user?.uid}
-            />
-          ) : null}
-          <button disabled={shareLoading} onClick={handleShare}>
-            <RiShareForwardLine /> {shareLoading ? 'Sharing' : 'Share this'}
-          </button>
+          <div className={s.infoMeta}>
+            <p className={s.infoLabel}>Kept by</p>
+            <p className={s.infoValue}>{name || 'User'}</p>
+          </div>
+          <div className={s.infoActions}>
+            <button
+              type="button"
+              className={`${s.iconButton} ${s.shareButton}`}
+              aria-label={shareLoading ? 'Sharing keep' : 'Share keep'}
+              title={shareLoading ? 'Sharing keep' : 'Share keep'}
+              disabled={shareLoading}
+              onClick={handleShare}
+              data-loading={shareLoading}
+            >
+              <RiShareForwardLine />
+              <span className={s.srOnly}>
+                {shareLoading ? 'Sharing keep' : 'Share keep'}
+              </span>
+            </button>
+            {isOwn ? (
+              <Toolbar
+                keepId={keepId}
+                edit={edit}
+                setEdit={setEdit}
+                uid={user?.uid}
+              />
+            ) : null}
+          </div>
         </div>
         {edit && isOwn ? (
           <section className={s.editorCard}>
