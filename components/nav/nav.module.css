@@ -5,7 +5,7 @@
   background-color: var(--card-background);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 12px 24px -20px rgba(45, 38, 35, 0.4);
+  box-shadow: 0 16px 32px -30px rgba(45, 38, 35, 0.15);
 }
 
 .navDiv {

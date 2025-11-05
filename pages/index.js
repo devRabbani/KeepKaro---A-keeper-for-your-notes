@@ -110,9 +110,8 @@ export default function Home() {
                 : 'KeepKaro keeps your ideas within reach.'}
             </h1>
             <p className={s.heroCopy}>
-              Capture quick thoughts, long-form notes, and links — then revisit
-              them anywhere. Start something new or jump into what you were
-              working on last.
+              Save the ideas, links, and lists that matter most. KeepKaro keeps
+              them close so you can start fresh or jump back in within a tap.
             </p>
             <div className={s.heroActions}>
               <button onClick={handleCreateKeep} className={s.primaryAction}>
