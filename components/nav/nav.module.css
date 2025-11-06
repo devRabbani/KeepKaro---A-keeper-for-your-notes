@@ -1,59 +1,134 @@
 .nav {
-  box-shadow: var(--nav-shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: var(--color-fullwhite);
+  background-color: var(--surface-card);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
 }
+
 .navDiv {
-  display: grid;
-  place-items: center;
   height: 6.5rem;
-  position: relative;
-}
-
-.navDiv a {
-  font-size: 3rem;
-  font-weight: 600;
-  color: var(--color-red-1);
-}
-
-.menu {
-  position: absolute;
-  left: 0;
-  font-size: 3rem;
-  color: var(--color-darkblue);
-  cursor: pointer;
-}
-
-.autoKeeping {
-  position: absolute;
-  font-size: 1.5rem;
-  right: 1.6rem;
-  top: 2.4rem;
-  z-index: 9999;
   display: flex;
-  gap: 0.3rem;
   align-items: center;
-  color: var(--color-keeping);
+  justify-content: space-between;
+  gap: 2rem;
 }
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.menuButton:hover,
+.menuButton:focus-visible {
+  background-color: var(--surface-overlay-soft);
+  border-color: var(--ink-glass-hover);
+}
+
+.menuButton:active {
+  transform: translateY(-1px);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  line-height: 1.05;
+}
+
+.brandTitle {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: -0.02em;
+}
+
+.brandTagline {
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  min-height: 3.6rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.status svg {
+  font-size: 1.6rem;
+}
+
+.statusSaving {
+  color: var(--brand);
+}
+
+.statusDone {
+  color: var(--text-primary);
+}
+
+.userChip {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  background: var(--userchip-background);
+  color: var(--userchip-foreground);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .sidebarWrapper {
-  width: 78%;
-  min-width: 28.5rem;
-  max-width: 40rem;
-  background-color: var(--color-fullwhite);
-  height: 100%;
+  width: clamp(26rem, 82vw, 40rem);
+  background: var(--surface-card);
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  border-right: 1px solid grey;
-  padding-inline: 1rem;
+  border-right: 1px solid var(--border);
+  padding: 1rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  z-index: -1;
+  gap: 1.5rem;
   opacity: 0;
+  z-index: 1000;
   transform: translateX(-100%);
   transform-origin: left;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .sidebarWrapper:global(.open) {
@@ -62,104 +137,195 @@
   z-index: 1001;
 }
 
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebarLogo {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: -0.01em;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.brandTagline {
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.sidebarActions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.mode {
+  border-radius: 50%;
+  background-color: var(--surface-overlay-glass);
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  border: 1px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.mode:hover,
+.mode:focus-visible {
+  background-color: var(--surface-overlay-glass);
+}
+
+.mode:active {
+  transform: translateY(-1px);
+}
+
+.closeButton {
+  border-radius: 50%;
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  background-color: var(--surface-card);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  background-color: var(--surface-overlay-strong);
+}
+
+.closeButton:active {
+  transform: translateY(-1px);
+}
+
+.closeButtonHidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  width: 0;
+  height: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 .loginDiv {
   margin-top: auto;
-  padding-block: 1.5rem;
-  border-top: 1px solid var(--color-lightblue);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
 }
 
 .loginBtn,
 .logoutBtn {
   width: 100%;
-  padding: 0.5em;
-  color: white;
-  border-radius: 0.7rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-size: var(--button-font-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .loginBtn {
-  background-color: var(--color-blue-1);
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  border-color: var(--border);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.loginBtn:hover,
+.loginBtn:focus-visible {
+  background-color: var(--surface-overlay-soft);
+  color: var(--text-primary);
 }
 
 .logoutBtn {
-  background-color: var(--color-red-3);
+  background-color: var(--surface-card);
+  color: var(--brand);
+  border-color: var(--brand-border);
+  box-shadow: inset 0 0 0 1px var(--brand-border);
 }
 
-.sidebarTop {
-  height: 6.5rem;
-  border-bottom: 1px solid var(--color-lightblue);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  gap: 1.5rem;
+.loginBtn:hover,
+.logoutBtn:hover {
+  box-shadow: var(--shadow-ink-heavy);
 }
 
-.sidebarTop svg {
-  font-size: 3.5rem;
-  color: var(--color-darkblue);
-  cursor: pointer;
+.logoutBtn:hover,
+.logoutBtn:focus-visible {
+  background-color: var(--brand-tint-medium);
+  border-color: var(--brand);
+  color: var(--brand);
 }
 
-.sidebarTop a {
-  display: flex;
-  flex-direction: column;
-  font-size: 2.8rem;
-  line-height: 1.2;
-  font-weight: 600;
-  color: var(--color-red-1);
-}
-.sidebarTop a span {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: var(--color-fullblack);
+.loginBtn:active,
+.logoutBtn:active {
+  transform: translateY(-1px);
 }
 
-.mode {
-  border-radius: 50%;
-  background-color: var(--color-modebg);
-  margin-left: auto;
-  padding: 0.7rem;
+
+@media screen and (min-width:500px){
+  .sidebarWrapper{
+    padding-inline:2.2rem;
+    padding-bottom:2.4rem;
+  }
+
+  .navRight{
+    gap:3rem
+  }
 }
 
-.mode svg {
-  font-size: 2.9rem;
-  color: var(--color-mode);
-}
-
-/* Media Query */
 @media screen and (min-width: 1280px) {
   .sidebarWrapper {
+    position: sticky;
+    top: 0;
+    width: var(--sidebar-width);
+    max-width: none;
+    min-width: 0;
+    height: 100vh;
     opacity: 1;
-    transform: translateX(0);
-    z-index: 1001;
-    background-color: var(--color-white);
-    left: auto;
-    width: 40rem;
-    max-width: 100%;
-  }
-  .nav {
-    background-color: transparent;
+    transform: none;
+    z-index: 2;
+    padding-inline: 1.7rem;
     box-shadow: none;
-    z-index: 0;
-    isolation: isolate;
+    transition: none;
   }
 
-  .nav a,
-  .menuArrow {
+  .sidebarWrapper:global(.open) {
+    transform: none;
+  }
+
+  .menuButton {
     display: none;
   }
 
-  .autoKeeping {
-    background-color: var(--color-white);
-    padding: 0.3em 0.6em;
-    border-radius: 0.7rem;
-    font-weight: 500;
-    font-size: 1.8rem;
-    top: 2.1rem;
-    right: 3rem;
+  .closeButton {
+    display: none;
   }
 
-  .mode {
-    margin-right: 1rem;
+  .brandTitle{
+    display:none
   }
 }

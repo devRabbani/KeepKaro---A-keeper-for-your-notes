@@ -78,6 +78,7 @@ export default function KeepPage() {
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
+        changeKeepSaving(false)
       }
     }, 1800),
     [keepId]
@@ -93,6 +94,7 @@ export default function KeepPage() {
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
+        changeKeepSaving(false)
       }
     }, 1800),
     [keepId]
@@ -146,7 +148,7 @@ export default function KeepPage() {
   useAddRecents(title, keepId)
 
   if (isLoading) {
-    return <Loading text="Getting Keep.." />
+    return <Loading text="Getting Keep..." />
   }
 
   return (
@@ -155,50 +157,66 @@ export default function KeepPage() {
         <title>{title || 'Keep'} | KeepKaro</title>
       </Head>
       <div className={`${s.keepPage} wrapper`}>
-        {isOwn ? (
-          <Toolbar
-            keepId={keepId}
-            edit={edit}
-            setEdit={setEdit}
-            uid={user?.uid}
-          />
-        ) : null}
-
         <div className={s.keepInfo}>
-          <p>Kept by {name || 'User'}</p>
-          {isOwn ? (
-            <Toolbar
-              keepId={keepId}
-              edit={edit}
-              setEdit={setEdit}
-              uid={user?.uid}
-            />
-          ) : null}
-          <button disabled={shareLoading} onClick={handleShare}>
-            <RiShareForwardLine /> {shareLoading ? 'Sharing' : 'Share this'}
-          </button>
+          <div className={s.infoMeta}>
+            <p className={s.infoLabel}>Kept by</p>
+            <p className={s.infoValue}>{name || 'User'}</p>
+          </div>
+          <div className={s.infoActions}>
+            {isOwn ? (
+              <>
+                <Toolbar
+                keepId={keepId}
+                edit={edit}
+                setEdit={setEdit}
+                uid={user?.uid}
+              />
+              <div className={s.toolbarSeparator} />
+              </>
+
+            ) : null}
+
+            <button
+              type="button"
+              className={`${s.iconButton} ${s.shareButton}`}
+              aria-label={shareLoading ? 'Sharing keep' : 'Share keep'}
+              title={shareLoading ? 'Sharing keep' : 'Share keep'}
+              disabled={shareLoading}
+              onClick={handleShare}
+              data-loading={shareLoading}
+            >
+              <RiShareForwardLine />
+              <span className={s.srOnly}>
+                {shareLoading ? 'Sharing keep' : 'Share keep'}
+              </span>
+            </button>
+          </div>
         </div>
         {edit && isOwn ? (
-          <>
+          <section className={s.editorCard}>
             <input
+              className={s.titleField}
               name="title"
               value={title}
               onChange={changeTitle}
               type="text"
-              placeholder="Title of the Keep"
+              placeholder="Give this keep a title"
               maxLength={100}
             />
 
             <textarea
+              className={s.bodyField}
               wrap="hard"
               name="content"
               value={content}
               onChange={changeContent}
-              placeholder="Type your content here"
+              placeholder="Capture your thoughts, lists, or links here…"
             />
-          </>
+          </section>
         ) : (
-          <ReadContent title={title} content={content} />
+          <section className={`${s.editorCard} ${s.readCard}`}>
+            <ReadContent title={title} content={content} />
+          </section>
         )}
       </div>
     </>

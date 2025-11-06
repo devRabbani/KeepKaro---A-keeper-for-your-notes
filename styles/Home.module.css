@@ -1,104 +1,241 @@
 .homePage {
-  padding-block: 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  padding-block: 2.6rem 5rem;
 }
 
-.homePage h1 {
-  text-transform: capitalize;
-  text-align: center;
-  color: #9a9ec9;
-  font-size: 2.4rem;
-  background: -webkit-linear-gradient(0deg, #b0b1d4, #d98d8d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.hero {
+  position: relative;
+  border-radius: var(--radius-md);
+  padding: clamp(2rem, 3.4vw, 3.6rem);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-ink-medium);
 }
 
-.recentlyViewed {
-  margin-top: 3rem;
+.heroContent {
+  max-width: 64rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
 }
-.homePage h3 {
+
+.welcomeBadge {
   width: fit-content;
-  margin-block: 3rem 1.5rem;
-  color: var(--color-darkblue-2);
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: var(--brand-tint-soft);
+  color: var(--brand);
+  font-weight: 600;
 }
 
-.homePage h3::after {
-  content: '';
-  background-color: #e6c9c9;
-  background-color: #d7d7e1;
-  height: 2px;
-  width: 70%;
-  display: block;
-  margin-top: 0.3rem;
+.hero h1 {
+  font-size: clamp(2.8rem, 4vw, 4.1rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.heroCopy {
+  font-size: clamp(1.6rem, 2.2vw, 1.9rem);
+  color: var(--text-muted);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  padding: 0.9rem 1.4rem;
+  font-size: var(--button-font-size);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primaryAction {
+  background-color: var(--brand);
+  color: var(--brand-contrast);
+  box-shadow: var(--shadow-brand-soft);
+}
+
+.primaryAction:hover,
+.primaryAction:focus-visible {
+  background-color: var(--brand-hover);
+  box-shadow: var(--shadow-brand-strong);
+}
+
+.primaryAction:active {
+  transform: translateY(-1px);
+}
+
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--ink-glass-soft);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.secondaryAction:hover,
+.secondaryAction:focus-visible {
+  background-color: var(--ink-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--ink-glass-hover);
+}
+
+.secondaryAction:active {
+  transform: translateY(-1px);
+}
+
+.shareCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.shareHeader {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+}
+
+.shareContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background-color: var(--keepitem-hover);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  border: 1px dashed var(--border);
+  white-space: pre-wrap;
+}
+
+.shareContent strong {
+  font-weight: 600;
+}
+
+.copyAction{
+  padding: 1rem 1.6rem;
+  width:100%;
+  font-size: var(--button-font-size);
+  border-radius: var(--radius-md);
+  text-align: center;
+  background-color: var(--brand);
+  color: var(--brand-contrast);
+  border: 1px solid var(--brand);
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
+}
+
+.copyAction:hover,
+.copyAction:focus-visible {
+  background-color: var(--brand-hover);
+  border-color: var(--brand-hover);
+}
+
+.copyAction:active {
+  transform: translateY(-1px);
+}
+
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.sectionHeader span {
+  font-size: 1.5rem;
+  color: var(--text-muted);
 }
 
 .keepLists {
   display: grid;
-  grid-template-columns: 1;
-  gap: 1.3rem;
+  gap: 1.4rem;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
 }
 
 .keep {
-  font-size: 2rem;
-  padding: 0.7em 0.4em;
-  border-radius: 0.4rem;
-  color: var(--color-black-1);
-  background-color: var(--color-keepwhite);
-  border-bottom: 1px solid var(--color-darkblue);
+  display: flex;
+  align-items: center;
+  padding: 2rem 1.6rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-bottom:2px solid var(--border);
+  color: var(--text-primary);
+  font-size: 1.7rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-ink-medium);
+}
+
+.keep span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.keep:hover,
+.keep:focus-visible {
+  box-shadow: var(--shadow-brand-soft);
+  border-bottom-color:var(--brand)
+}
+
+.keep:active {
+  transform: translateY(-2px);
 }
 
 .noData {
-  color: var(--color-nodata);
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  background-color: var(--surface-muted);
+  border-radius: 1.4rem;
+  padding: 1.6rem;
+  border: 1px dashed var(--border-subtle);
 }
 
-/* Share Data */
-.btnDiv {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+@media screen and (min-width: 1024px) {
+  .homePage {
+    padding: 3rem 0 7rem;
+  }
+  .copyAction{
+    width:fit-content;
+  }
 }
-.btnDiv > * {
-  font-size: 1.8rem;
-  padding-block: 0.3em;
-  width: 10rem;
-  text-align: center;
-  border-radius: 0.4rem;
-}
-
-.btnDiv button {
-  background-color: var(--color-blue-1);
-}
-
-.btnDiv a {
-  background-color: var(--color-cancel);
-  color: var(--color-content);
-}
-.shareP {
-  color: var(--color-lightblue);
-}
-
-.shareData {
-  padding: 0.4em;
-  font-size: 2rem;
-  border-radius: 0.4rem;
-  color: var(--color-black-1);
-  background-color: var(--color-keepwhite);
-  margin-block: 1rem;
-  word-wrap: break-word;
-  max-height: 15rem;
-  overflow-y: auto;
-}
-
-/* Media Query */
 
 @media screen and (min-width: 1280px) {
   .homePage {
-    padding: 0 0 5rem 40rem;
-    margin-top: -3rem;
+    padding: 3rem 0 8rem;
   }
+
   .keepLists {
-    grid-template-columns: 1fr 1fr;
-  }
-  .homePage h1 {
-    font-size: 3.3rem;
+    grid-template-columns: repeat(3, 1fr);
   }
 }

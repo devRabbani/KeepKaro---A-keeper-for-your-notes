@@ -4,12 +4,14 @@ import { RiMenu5Fill, RiSave3Line, RiUploadCloud2Line } from 'react-icons/ri'
 import { useEffect, useRef, useState } from 'react'
 import Sidebar from './sidebar'
 import { useKeepSaving } from '../../contexts/keepSaving'
+import { useAuth } from '../../contexts/auth/authContext'
 
 export default function Nav() {
   const [isMenu, setIsMenu] = useState(false)
 
   const sidebarRef = useRef(null)
   const { keepSaving, keepDone, changeKeepDone } = useKeepSaving()
+  const { user } = useAuth()
 
   useEffect(() => {
     const handler = (e) => {
@@ -32,24 +34,43 @@ export default function Nav() {
     return () => tracker && clearTimeout(tracker)
   }, [keepDone])
 
+  const status =
+    keepSaving || keepDone ? (
+      <span
+        className={`${s.status} ${keepSaving ? s.statusSaving : s.statusDone}`}
+      >
+        {keepSaving ? <RiUploadCloud2Line /> : <RiSave3Line />}
+        {keepSaving ? 'Keeping' : 'Kept'}
+      </span>
+    ) : null
+
   return (
     <>
       <nav className={s.nav}>
         <div className={`${s.navDiv} wrapper`}>
-          <RiMenu5Fill onClick={() => setIsMenu(true)} className={s.menu} />
-          <Link href="/">KeepKaro</Link>
+          <div className={s.navLeft}>
+            <button
+              type="button"
+              onClick={() => setIsMenu(true)}
+              className={s.menuButton}
+              aria-label="Open navigation menu"
+            >
+              <RiMenu5Fill />
+            </button>
+            <Link href="/" className={s.brand}>
+              <span className={s.brandTitle}>KeepKaro</span>
+            </Link>
+          </div>
+          <div className={s.navRight} aria-live="polite">
+            {status}
+            {user ? (
+              <div className={s.userChip} title={user.displayName}>
+                {user.displayName?.charAt(0)?.toUpperCase() || 'U'}
+              </div>
+            ) : null}
+          </div>
         </div>
       </nav>
-      {keepSaving ? (
-        <span className={s.autoKeeping}>
-          <RiUploadCloud2Line /> Keeping
-        </span>
-      ) : keepDone ? (
-        <span className={s.autoKeeping}>
-          <RiSave3Line />
-          Kept
-        </span>
-      ) : null}
       <Sidebar ref={sidebarRef} setIsMenu={setIsMenu} isMenu={isMenu} />
     </>
   )

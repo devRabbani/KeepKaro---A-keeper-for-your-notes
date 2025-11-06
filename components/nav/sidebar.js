@@ -13,7 +13,19 @@ import Link from 'next/link'
 const Sidebar = ({ setIsMenu, isMenu }, ref) => {
   const { user, dispatch } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
-  const [mode, setMode] = useState(localStorage.getItem('mode') || 'light')
+  const [mode, setMode] = useState('light')
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const savedMode = window.localStorage.getItem('mode')
+    if (savedMode === 'dark' || savedMode === 'light') {
+      setMode(savedMode)
+      document.documentElement.setAttribute('data-theme', savedMode)
+    }
+    if (!savedMode) {
+      document.documentElement.setAttribute('data-theme', 'light')
+    }
+  }, [])
 
   const login = async () => {
     setIsLoading(true)
@@ -36,13 +48,13 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
   }
 
   const toggleColorMode = () => {
-    if (mode === 'light') {
-      setMode('dark')
-      localStorage.setItem('mode', 'dark')
-    } else {
-      setMode('light')
-      localStorage.setItem('mode', 'light')
-    }
+    setMode((prev) => {
+      const nextMode = prev === 'light' ? 'dark' : 'light'
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('mode', nextMode)
+      }
+      return nextMode
+    })
   }
 
   const logout = async () => {
@@ -57,27 +69,47 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
   }
 
   useEffect(() => {
-    if (mode === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark')
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light')
+    const root = document.documentElement
+    root.setAttribute('data-theme', mode === 'dark' ? 'dark' : 'light')
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]')
+    if (themeColorMeta) {
+      const computed = getComputedStyle(root).getPropertyValue('--surface-base')
+      const fallback = mode === 'dark' ? '#0f0d13' : 'rgb(252, 250, 248)'
+      themeColorMeta.setAttribute('content', computed?.trim() || fallback)
     }
   }, [mode])
 
   return (
-    <div ref={ref} className={`${s.sidebarWrapper} ${isMenu ? 'open' : ''}`}>
-      <div className={s.sidebarTop}>
-        <Link href="/">
+    <div
+      ref={ref}
+      className={`${s.sidebarWrapper} appSidebar ${isMenu ? 'open' : ''}`}
+    >
+      <div className={s.sidebarHeader}>
+        <Link href="/" className={s.sidebarLogo}>
           KeepKaro
-          <span>Powered by CanWeBe!</span>
+          <span className={s.brandTagline}>Notes kept simple</span>
         </Link>
-        <button onClick={toggleColorMode} className={s.mode}>
-          {mode === 'light' ? <RiMoonFill /> : <RiLightbulbLine />}
-        </button>
-        <RiArrowLeftSLine
-          onClick={() => setIsMenu(false)}
-          className={s.menuArrow}
-        />
+        <div className={s.sidebarActions}>
+          <button
+            type="button"
+            onClick={toggleColorMode}
+            className={s.mode}
+            aria-label="Toggle color mode"
+          >
+            {mode === 'light' ? <RiMoonFill /> : <RiLightbulbLine />}
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsMenu(false)}
+            className={`${s.closeButton} ${isMenu ? '' : s.closeButtonHidden}`}
+            aria-label="Close navigation menu"
+            tabIndex={isMenu ? 0 : -1}
+            aria-hidden={!isMenu}
+          >
+            <RiArrowLeftSLine />
+          </button>
+        </div>
       </div>
       <SidebarContent user={user} setIsMenu={setIsMenu} />
       <div className={s.loginDiv}>

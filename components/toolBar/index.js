@@ -10,6 +10,9 @@ export default function Toolbar({ keepId, uid, edit, setEdit }) {
 
   const router = useRouter()
 
+  const deleteLabel = dltLoading ? 'Deleting keep' : 'Delete keep'
+  const toggleLabel = edit ? 'Switch to read mode' : 'Switch to edit mode'
+
   // Custom Function
   // Handle Delete
   const handleDelete = async () => {
@@ -37,30 +40,24 @@ export default function Toolbar({ keepId, uid, edit, setEdit }) {
   }
 
   return (
-    <div className={s.toolbarWrapper}>
       <div className={s.toolbar}>
         <button
           disabled={dltLoading}
+          aria-label={deleteLabel}
+          title={deleteLabel}
           onClick={handleDelete}
-          className={s.dltBtn}
+          className={`${s.iconButton} ${s.dltBtn}`}
         >
           <RiDeleteBin5Fill />
-          {dltLoading ? 'Deleting' : 'Delete'}
         </button>
-        <button className={s.editBtn} onClick={() => setEdit((prev) => !prev)}>
-          {edit ? (
-            <>
-              <RiEyeFill />
-              Read
-            </>
-          ) : (
-            <>
-              <RiEditFill />
-              Edit
-            </>
-          )}
+        <button
+          className={`${s.iconButton} ${s.editBtn}`}
+          aria-label={toggleLabel}
+          title={toggleLabel}
+          onClick={() => setEdit((prev) => !prev)}
+        >
+          {edit ? <RiEyeFill /> : <RiEditFill />}
         </button>
       </div>
-    </div>
   )
 }

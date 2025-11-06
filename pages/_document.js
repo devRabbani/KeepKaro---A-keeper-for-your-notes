@@ -2,13 +2,13 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" data-theme="light">
       <Head>
         <meta
           name="description"
           content="Now Keep your all important notes, links and share with your friends"
         />
-        <meta name="theme-color" content="#d90429" />
+        <meta name="theme-color" content="rgb(252, 250, 248)" />
         <meta name="color-scheme" content="light dark" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="https://keepkaro.canwebe.in" />
