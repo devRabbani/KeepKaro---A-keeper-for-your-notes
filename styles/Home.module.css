@@ -231,7 +231,7 @@
   font-size: 1.7rem;
   font-weight: 500;
   transition: all 0.2s ease;
-  box-shadow: var(--shadow-ink-strong);
+  box-shadow: var(--shadow-ink-medium);
 }
 
 .keep span {

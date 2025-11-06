@@ -148,7 +148,7 @@ export default function KeepPage() {
   useAddRecents(title, keepId)
 
   if (isLoading) {
-    return <Loading text="Getting Keep.." />
+    return <Loading text="Getting Keep..." />
   }
 
   return (

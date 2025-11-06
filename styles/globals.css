@@ -1,7 +1,8 @@
 :root {
+  color-scheme: light;
   --brand-rgb: 217, 4, 41;
   --brand: rgb(var(--brand-rgb));
-  --brand-hover: rgb(185, 3, 35);
+  --brand-hover: rgba(191, 1, 36, 1);
   --brand-contrast: rgb(255, 255, 255);
 
   --brand-tint-soft: rgba(var(--brand-rgb), 0.05);
@@ -16,8 +17,13 @@
   --surface-muted: rgb(243, 238, 234);
   --surface-read: rgb(248, 246, 245);
   --surface-overlay-soft: rgba(251, 248, 245, 0.18);
+  --surface-overlay-hover: rgba(251, 248, 245, 0.26);
   --surface-overlay-strong: rgba(251, 248, 245, 0.88);
   --surface-overlay-glass: rgba(248, 246, 244, 0.8);
+
+  --keepitem-hover:rgba(250,244,244);
+  --userchip-background:rgb(61, 51, 46);
+  --userchip-foreground: rgb(255, 255, 255);
 
   --text-primary: rgb(61, 51, 46);
   --text-strong: rgb(45, 38, 35);
@@ -46,6 +52,46 @@
   --sidebar-width: 38rem;
 
   --color-brand-accent: var(--brand);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --surface-base: rgb(18, 16, 19);
+  --surface-card: rgb(26, 23, 28);
+  --surface-muted: rgb(30, 27, 32);
+  --surface-read: rgb(28, 26, 31);
+  --surface-overlay-soft: rgba(255, 255, 255, 0.05);
+  --surface-overlay-hover: rgba(255, 255, 255, 0.1);
+  --surface-overlay-strong: rgba(255, 255, 255, 0.05);
+  --surface-overlay-glass: rgba(255, 255, 255, 0.12);
+
+  --keepitem-hover:rgba(33,29,30,0.5);
+
+  --text-primary: rgb(234, 230, 226);
+  --text-strong: rgb(255, 255, 255);
+  --text-muted: rgb(166, 158, 149);
+
+  --border: rgba(255, 255, 255, 0.14);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+
+  --ink-rgb: 0, 0, 0;
+  --ink-glass-soft: rgba(0, 0, 0, 0.24);
+  --ink-glass-hover: rgba(0, 0, 0, 0.32);
+  --ink-glass-strong: rgba(47, 47, 47, 1);
+  --shadow-ink-soft: 0 10px 24px -20px rgba(0, 0, 0, 0.55);
+  --shadow-ink-medium: 0 18px 36px -24px rgba(0, 0, 0, 0.6);
+  --shadow-ink-strong: 0 26px 42px -20px rgba(0, 0, 0, 0.65);
+  --shadow-ink-heavy: 0 30px 58px -18px rgba(0, 0, 0, 0.75);
+
+  --brand-hover: rgba(195, 4, 36, 1);
+  --brand-tint-soft: rgba(var(--brand-rgb), 0.05);
+  --brand-tint-medium: rgba(var(--brand-rgb), 0.15);
+  --brand-tint-bold: rgba(var(--brand-rgb), 0.45);
+  --brand-border: rgba(var(--brand-rgb), 0.36);
+
+  --badge-background: rgba(255, 255, 255, 0.08);
+  --scroll-thumb: rgba(152, 142, 136, 0.45);
+  --divider: rgba(255, 255, 255, 0.08);
 }
 
 /*
@@ -214,12 +260,13 @@ button {
 }
 
 .notfound {
-  min-height: calc(100% - 6.5rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  min-height: calc(100vh - 6.5rem);
+  display: grid;
+  place-content: center;
   gap: 1.5rem;
+  text-align: center;
+  padding-inline: 1rem;
+  box-sizing: border-box;
 }
 
 .notfound h3 {
@@ -229,9 +276,32 @@ button {
   color: var(--text-strong);
 }
 
-.notfound a {
-  font-size: 2rem;
-  color: var(--brand);
+.notfoundBody {
+  color: var(--text-muted);
+  font-size: 1.6rem;
+  line-height: 1.6;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.notfoundPrimary {
+  padding: 0.9rem 4rem;
+  border-radius: var(--radius-md);
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    transform 0.2s ease;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  background-color: var(--surface-overlay-soft);
+  color: var(--text-primary);
+  margin-inline:auto;
+}
+
+.notfoundPrimary:hover,
+.notfoundPrimary:focus-visible {
+  background-color: var(--surface-overlay-hover);
+  transform: translateY(-1px);
 }
 
 @media screen and (min-width: 1280px) {

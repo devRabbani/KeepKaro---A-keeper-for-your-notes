@@ -24,7 +24,7 @@ export default function AuthContextProvider({ children }) {
   }, [])
 
   if (!state.authReady) {
-    return <Loading text="KeepKaro" full />
+    return <Loading text="KeepKaro" full/>
   }
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

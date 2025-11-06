@@ -102,8 +102,8 @@
   width: 3.6rem;
   height: 3.6rem;
   border-radius: 50%;
-  background: var(--text-primary);
-  color: var(--brand-contrast);
+  background: var(--userchip-background);
+  color: var(--userchip-foreground);
   display: inline-flex;
   align-items: center;
   justify-content: center;

@@ -20,6 +20,10 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
     const savedMode = window.localStorage.getItem('mode')
     if (savedMode === 'dark' || savedMode === 'light') {
       setMode(savedMode)
+      document.documentElement.setAttribute('data-theme', savedMode)
+    }
+    if (!savedMode) {
+      document.documentElement.setAttribute('data-theme', 'light')
     }
   }, [])
 
@@ -65,10 +69,14 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
   }
 
   useEffect(() => {
-    if (mode === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark')
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light')
+    const root = document.documentElement
+    root.setAttribute('data-theme', mode === 'dark' ? 'dark' : 'light')
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]')
+    if (themeColorMeta) {
+      const computed = getComputedStyle(root).getPropertyValue('--surface-base')
+      const fallback = mode === 'dark' ? '#0f0d13' : 'rgb(252, 250, 248)'
+      themeColorMeta.setAttribute('content', computed?.trim() || fallback)
     }
   }, [mode])
 

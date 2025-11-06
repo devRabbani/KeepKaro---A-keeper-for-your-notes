@@ -91,7 +91,7 @@ export default function Home() {
   }
 
   if (loading) {
-    return <Loading text="Getting Data.." />
+    return <Loading text="Getting Data..." />
   }
 
   return (

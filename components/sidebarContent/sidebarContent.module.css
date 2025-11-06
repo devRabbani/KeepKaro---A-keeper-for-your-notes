@@ -102,7 +102,7 @@
 }
 
 .keepItem:hover {
-  background-color: var(--brand-tint-soft);
+  background-color: var(--keepitem-hover);
 }
 
 .keepItem:global(.active) {
