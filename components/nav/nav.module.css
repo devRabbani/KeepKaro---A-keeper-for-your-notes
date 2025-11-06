@@ -19,7 +19,7 @@
 .navLeft {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1.2rem;
 }
 
 .menuButton {
@@ -28,18 +28,18 @@
   justify-content: center;
   width: 3.6rem;
   height: 3.6rem;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background-color: var(--card-background);
   color: var(--foreground);
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .menuButton:hover,
 .menuButton:focus-visible {
-  background-color: rgba(251, 248, 245, 0.88);
-  border-color: rgba(217, 4, 41, 0.25);
+  background-color: rgba(251, 248, 245, 0.18);
+  border-color: rgba(45, 38, 35, 0.12);
 }
 
 .menuButton:active {
@@ -54,7 +54,7 @@
 }
 
 .brandTitle {
-  font-size: 2.6rem;
+  font-size: 2.3rem;
   font-weight: 700;
   color: var(--brand-color);
   letter-spacing: -0.02em;
@@ -127,11 +127,12 @@
   top: 0;
   left: 0;
   border-right: 1px solid var(--border);
-  padding:1rem 2.2rem 2.4rem;
+  padding:1rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  gap: 1.5rem;
   opacity: 0;
+  z-index:1000;
   transform: translateX(-100%);
   transform-origin: left;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -219,6 +220,20 @@
   transform: translateY(-1px);
 }
 
+.closeButtonHidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  width: 0;
+  height: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 .loginDiv {
   margin-top: auto;
   padding-top: 1.5rem;
@@ -267,6 +282,14 @@
 .loginBtn:active,
 .logoutBtn:active {
   transform: translateY(-1px);
+}
+
+
+@media screen and (min-width:500px){
+  .sidebarWrapper{
+    padding-inline:2.2rem;
+    padding-bottom:2.4rem;
+  }
 }
 
 @media screen and (min-width: 1280px) {

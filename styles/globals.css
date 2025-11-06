@@ -1,6 +1,7 @@
 :root {
   --brand-color: #d90429;
   --brand-color-light: rgba(217, 4, 41, 0.92);
+  --brand-color-extra-light: #e7c3c6;
   --brand-foreground: #ffffff;
   --background: #fcfaf8;
   --background-soft: rgba(252, 250, 248, 0.96);
@@ -8,7 +9,7 @@
   --foreground: #3d332e;
   --muted: #8c827b;
   --border: #efe6df;
-  --divider: rgba(229, 220, 213, 0.7);
+  --divider: rgba(239, 233, 228, 0.7);
   --badge-background: rgba(255, 255, 255, 0.8);
   --scroll-thumb: rgba(208, 200, 194, 0.7);
   --brand-border-soft: rgba(217, 4, 41, 0.16);
@@ -170,9 +171,5 @@ button {
 @media screen and (min-width: 1280px) {
   .wrapper {
     max-width: 1400px;
-  }
-  main {
-    max-width: 1400px;
-    margin-inline: auto;
   }
 }

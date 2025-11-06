@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 1.6rem;
   flex: 1 1 auto;
+  min-height: 0;
   font-size: 1.5rem;
 }
 
@@ -45,7 +46,9 @@
   flex-direction: column;
   gap: 0;
   flex: 1 1 auto;
+  min-height: 0;
   padding-right: 0.6rem;
+  padding-block:0.5rem 1rem
 }
 
 .keepList::-webkit-scrollbar {
@@ -60,8 +63,8 @@
 .keepItem {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  padding: 1.3rem 1.2rem;
+  gap: 1rem;
+  padding: 1.3rem 1.1rem 1.3rem 1.4rem;
   color: var(--foreground);
   font-weight: 500;
   border-radius: var(--radius-sm);
@@ -75,10 +78,10 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 1.2rem;
-  bottom: 1.2rem;
+  top: 1.3rem;
+  bottom: 1.3rem;
   width: 0.28rem;
-  border-radius: 0.4rem;
+  border-radius: 5rem;
   background-color: var(--brand-color);
   opacity: 0;
   transform: scaleY(0.4);
@@ -88,8 +91,8 @@
 .keepItem::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 3rem;
+  right: 3rem;
   bottom: 0;
   border-bottom: 1px solid var(--divider);
 }
@@ -99,7 +102,7 @@
 }
 
 .keepItem:hover {
-  background-color: rgba(217, 4, 41, 0.08);
+  background-color: rgba(217, 4, 41, 0.05);
 }
 
 .keepItem:global(.active) {
@@ -110,22 +113,6 @@
   opacity: 1;
   transform: scaleY(1);
 }
-
-.keepBadge {
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--badge-background);
-  border: 1px solid var(--brand-border-soft);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--brand-color);
-  flex-shrink: 0;
-}
-
 
 .keepTitle {
   flex: 1 1 auto;
@@ -165,4 +152,11 @@
 .placeholder button:hover,
 .placeholder button:focus-visible {
   text-decoration: underline;
+}
+
+
+@media screen and (min-width:500px){
+  .keepItem{
+    gap: 1.2rem
+  }
 }

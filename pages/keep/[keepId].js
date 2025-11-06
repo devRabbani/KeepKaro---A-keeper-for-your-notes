@@ -78,6 +78,7 @@ export default function KeepPage() {
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
+        changeKeepSaving(false)
       }
     }, 1800),
     [keepId]
@@ -93,6 +94,7 @@ export default function KeepPage() {
       } catch (error) {
         console.log(error.message)
         toast.error(<b>{error.message}</b>)
+        changeKeepSaving(false)
       }
     }, 1800),
     [keepId]

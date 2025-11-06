@@ -91,8 +91,10 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
           <button
             type="button"
             onClick={() => setIsMenu(false)}
-            className={s.closeButton}
+            className={`${s.closeButton} ${isMenu ? '' : s.closeButtonHidden}`}
             aria-label="Close navigation menu"
+            tabIndex={isMenu ? 0 : -1}
+            aria-hidden={!isMenu}
           >
             <RiArrowLeftSLine />
           </button>

@@ -69,7 +69,6 @@ export default function SidebarContent({ user, setIsMenu }) {
                 key={keep.keepId}
                 className={`${s.keepItem} ${isActive ? 'active' : ''}`}
               >
-                <span className={s.keepBadge}>{badge}</span>
                 <span className={s.keepTitle}>{title}</span>
                 </Link>
                 <div className={s.keepSeparator} />
@@ -79,9 +78,6 @@ export default function SidebarContent({ user, setIsMenu }) {
         ) : (
           <div className={s.placeholder}>
             <p>No keeps yet.</p>
-            <button type="button" onClick={handleNewKeep}>
-              Create your first keep
-            </button>
           </div>
         )}
       </div>

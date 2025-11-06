@@ -1,7 +1,7 @@
 .keepPage {
   display: flex;
   flex-direction: column;
-  gap: 2.2rem;
+  gap: 1.2rem;
   padding: 2.6rem clamp(1.6rem, 4vw, 3.6rem) 4.6rem;
   min-height: calc(100% - 6.5rem);
 }
@@ -12,7 +12,7 @@
   gap: 1.6rem;
   padding: 2.2rem;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background-color: var(--card-background);
   box-shadow: 0 16px 32px -32px rgba(45, 38, 35, 0.18);
   width: min(100%, 84rem);
@@ -274,7 +274,7 @@
   align-items: center;
   gap: 0.8rem;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: 0.6rem 1.4rem;
   background-color: var(--card-background);
   box-shadow: 0 14px 32px -30px rgba(45, 38, 35, 0.18);
