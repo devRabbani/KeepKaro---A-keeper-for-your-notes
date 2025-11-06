@@ -12,7 +12,7 @@
   background-color: var(--card-background);
   border: 1px solid var(--border);
   color: var(--foreground);
-  box-shadow: 0 16px 32px -32px rgba(var(--color-base-900-rgb), 0.18);
+  box-shadow: 0 16px 32px -32px var(--color-base-900-a18);
 }
 
 .heroContent {
@@ -29,7 +29,7 @@
   font-size: 1.3rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background-color: rgba(var(--color-brand-primary-rgb), 0.12);
+  background-color: var(--color-brand-primary-a12);
   color: var(--brand-color);
   font-weight: 600;
 }
@@ -66,13 +66,13 @@
 .primaryAction {
   background-color: var(--brand-color);
   color: var(--brand-foreground);
-  box-shadow: 0 14px 28px -24px rgba(var(--color-brand-primary-rgb), 0.45);
+  box-shadow: 0 14px 28px -24px var(--color-brand-primary-a45);
 }
 
 .primaryAction:hover,
 .primaryAction:focus-visible {
   background-color: var(--brand-color-light);
-  box-shadow: 0 16px 32px -26px rgba(var(--color-brand-primary-rgb), 0.45);
+  box-shadow: 0 16px 32px -26px var(--color-brand-primary-a45);
 }
 
 .primaryAction:active {
@@ -83,16 +83,16 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background-color: rgba(var(--color-base-1000-rgb), 0.04);
+  background-color: var(--color-base-1000-a04);
   color: var(--muted);
   border-color: var(--border);
 }
 
 .secondaryAction:hover,
 .secondaryAction:focus-visible {
-  background-color: rgba(var(--color-base-1000-rgb), 0.06);
+  background-color: var(--color-base-1000-a06);
   color: var(--foreground);
-  border-color: rgba(var(--color-base-1000-rgb), 0.08);
+  border-color: var(--color-base-1000-a08);
 }
 
 .secondaryAction:active {
@@ -107,7 +107,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
-  box-shadow: 0 12px 28px -28px rgba(var(--color-base-900-rgb), 0.12);
+  box-shadow: 0 12px 28px -28px var(--color-base-900-a12);
 }
 
 .shareHeader h2 {
@@ -126,7 +126,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  background-color: rgba(var(--color-brand-primary-rgb), 0.04);
+  background-color: var(--color-brand-primary-a04);
   border-radius: var(--radius-md);
   padding: 1.4rem;
   font-size: 1.6rem;
@@ -231,7 +231,7 @@
   font-size: 1.7rem;
   font-weight: 500;
   transition: all 0.2s ease;
-  box-shadow: 0 10px 24px -24px rgba(var(--color-base-900-rgb), 0.35);
+  box-shadow: 0 10px 24px -24px var(--color-base-900-a35);
 }
 
 .keep span {
@@ -243,7 +243,7 @@
 
 .keep:hover,
 .keep:focus-visible {
-  box-shadow: 0 18px 28px -28px rgba(var(--color-brand-primary-rgb), 0.35);
+  box-shadow: 0 18px 28px -28px var(--color-brand-primary-a35);
   border-bottom-color:var(--brand-color-light)
 }
 

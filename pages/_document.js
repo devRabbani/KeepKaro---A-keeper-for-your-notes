@@ -8,7 +8,7 @@ export default function Document() {
           name="description"
           content="Now Keep your all important notes, links and share with your friends"
         />
-        <meta name="theme-color" content="#d90429" />
+        <meta name="theme-color" content="rgb(217, 4, 41)" />
         <meta name="color-scheme" content="light dark" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="https://keepkaro.canwebe.in" />
