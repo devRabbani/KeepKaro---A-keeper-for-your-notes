@@ -100,33 +100,21 @@
 }
 
 .shareCard {
-  background-color: var(--surface-card);
-  border-radius: var(--radius-md);
-  padding: clamp(1.6rem, 2.6vw, 2.2rem);
-  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
-  box-shadow: var(--shadow-ink-soft);
 }
 
-.shareHeader h2 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.shareHeader p {
-  font-size: 1.6rem;
+.shareHeader {
+  font-size: 1.5rem;
   color: var(--text-muted);
-  margin-top: 0.3rem;
 }
 
 .shareContent {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  background-color: var(--brand-tint-soft);
+  background-color: var(--keepitem-hover);
   border-radius: var(--radius-md);
   padding: 1.4rem;
   font-size: 1.6rem;
@@ -138,31 +126,18 @@
 .shareContent strong {
   font-weight: 600;
 }
-.shareContent span {
-  display: block;
-}
 
-.shareActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.copyAction,
-.dismissAction {
-  flex: 1 1 14rem;
+.copyAction{
   padding: 1rem 1.6rem;
+  width:100%;
   font-size: var(--button-font-size);
   border-radius: var(--radius-md);
   text-align: center;
-  transition: background-color 0.2s ease, color 0.2s ease,
-    border-color 0.2s ease, transform 0.2s ease;
-}
-
-.copyAction {
   background-color: var(--brand);
   color: var(--brand-contrast);
   border: 1px solid var(--brand);
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
 }
 
 .copyAction:hover,
@@ -175,20 +150,6 @@
   transform: translateY(-1px);
 }
 
-.dismissAction {
-  background-color: transparent;
-  border: 1px solid var(--border-subtle);
-  color: var(--text-strong);
-}
-
-.dismissAction:hover,
-.dismissAction:focus-visible {
-  background-color: var(--surface-muted);
-}
-
-.dismissAction:active {
-  transform: translateY(-1px);
-}
 
 .section {
   display: flex;
@@ -264,9 +225,8 @@
   .homePage {
     padding: 3rem 0 7rem;
   }
-
-  .shareCard {
-    padding: clamp(2.2rem, 3.2vw, 3rem);
+  .copyAction{
+    width:fit-content;
   }
 }
 

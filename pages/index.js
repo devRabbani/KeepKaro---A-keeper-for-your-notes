@@ -94,6 +94,8 @@ export default function Home() {
     return <Loading text="Getting Data..." />
   }
 
+  console.log(sharePayload.title,'title')
+
   return (
     <>
       <Head>
@@ -101,7 +103,26 @@ export default function Home() {
       </Head>
 
       <div className={`${s.homePage} wrapper`}>
-        <section className={s.hero}>
+
+
+        {sharePayload.title || sharePayload.text ? (
+          <section className={s.shareCard}>
+              <p className={s.shareHeader}>Copy the content and go to your keep and paste it</p>
+            <div className={s.shareContent} ref={shareRef}>
+              {sharePayload.title && (
+                <strong>{sharePayload.title}</strong>
+              )}
+              {sharePayload.text ? (
+                <span>{sharePayload.text}</span>
+              ) : null}
+            </div>
+            <div className={s.shareActions}>
+              <button onClick={handleCopy} className={s.copyAction}>
+                {isCopied ? 'Copied!' : 'Copy to clipboard'}
+              </button>
+            </div>
+          </section>
+        ) :  <section className={s.hero}>
           <div className={s.heroContent}>
             <p className={s.welcomeBadge}>Welcome back</p>
             <h1>
@@ -127,32 +148,7 @@ export default function Home() {
               ) : null}
             </div>
           </div>
-        </section>
-
-        {sharePayload.title || sharePayload.text ? (
-          <section className={s.shareCard}>
-            <div className={s.shareHeader}>
-              <h2>Shared to you</h2>
-              <p>Copy the message below or head back to your dashboard.</p>
-            </div>
-            <div className={s.shareContent} ref={shareRef}>
-              {sharePayload.title && (
-                <strong>{sharePayload.title}</strong>
-              )}
-              {sharePayload.text ? (
-                <span>{sharePayload.text}</span>
-              ) : null}
-            </div>
-            <div className={s.shareActions}>
-              <button onClick={handleCopy} className={s.copyAction}>
-                {isCopied ? 'Copied!' : 'Copy to clipboard'}
-              </button>
-              <Link href="/" className={s.dismissAction}>
-                Dismiss
-              </Link>
-            </div>
-          </section>
-        ) : null}
+        </section>}
 
         <section className={s.section}>
           <div className={s.sectionHeader}>
