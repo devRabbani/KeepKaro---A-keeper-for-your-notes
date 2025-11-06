@@ -32,14 +32,27 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   useEffect(() => {
-    console.log(
-      '%cCan%cWeBe!',
-      'color: #e47e24; font-size: 4.5em; font-weight: bolder; text-shadow: #000 1px 1px;',
-      'color: #fff; font-size: 4.5em; font-weight: bolder; text-shadow: #000 1px 1px;'
-    )
+    const rootStyles = getComputedStyle(document.documentElement)
+    const getVar = (name, fallback) => {
+      const value = rootStyles.getPropertyValue(name).trim()
+      if (value) return value
+      if (!fallback) return value
+      return rootStyles.getPropertyValue(fallback).trim()
+    }
+
+    const bannerColor = getVar('--color-warning', '--brand-color')
+    const textColor = getVar('--color-base-0', '--brand-foreground')
+    const shadowColor = getVar('--color-base-1000', '--color-base-900')
+    const infoColor = getVar('--color-border-strong', '--border')
+
+    const bannerStyles = `color: ${bannerColor}; font-size: 4.5em; font-weight: bolder; text-shadow: ${shadowColor} 1px 1px;`
+    const textStyles = `color: ${textColor}; font-size: 4.5em; font-weight: bolder; text-shadow: ${shadowColor} 1px 1px;`
+    const infoStyles = `color: ${infoColor}; font-size: 1.5em;`
+
+    console.log('%cCan%cWeBe!', bannerStyles, textStyles)
     console.log(
       '%cHey explorer!, Are you lost?? Because this is not the right place for you. If you want to work with us at CanWeBe contact us now.',
-      'color: #e1e1e1; font-size: 1.5em;'
+      infoStyles
     )
   }, [])
 

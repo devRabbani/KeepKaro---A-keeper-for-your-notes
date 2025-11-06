@@ -1,18 +1,42 @@
 :root {
-  --brand-color: #d90429;
-  --brand-color-light: rgba(217, 4, 41, 0.92);
+  --color-brand-primary: #d90429;
+  --color-brand-primary-rgb: 217, 4, 41;
+  --color-brand-primary-dark: #b90323;
+  --color-brand-accent: #ef233c;
+  --color-warning: #e47e24;
+
+  --color-base-0: #ffffff;
+  --color-base-0-rgb: 255, 255, 255;
+  --color-base-100: #f3eeea;
+  --color-base-150: #d7cfc9;
+  --color-base-200: #e2dad4;
+  --color-base-600: #7a706a;
+  --color-base-820: #3c332f;
+  --color-base-840: #3d332e;
+  --color-base-900: #2d2623;
+  --color-base-900-rgb: 45, 38, 35;
+  --color-base-960-rgb: 26, 24, 23;
+  --color-base-1000: #000000;
+  --color-base-1000-rgb: 0, 0, 0;
+  --color-border-strong: #e1e1e1;
+
+  --color-surface-base-rgb: 251, 248, 245;
+  --color-surface-overlay-rgb: 248, 246, 244;
+
+  --brand-color: var(--color-brand-primary);
+  --brand-color-light: rgba(var(--color-brand-primary-rgb), 0.92);
   --brand-color-extra-light: #e7c3c6;
-  --brand-foreground: #ffffff;
+  --brand-foreground: var(--color-base-0);
   --background: #fcfaf8;
   --background-soft: rgba(252, 250, 248, 0.96);
   --card-background: #fffcfa;
-  --foreground: #3d332e;
+  --foreground: var(--color-base-840);
   --muted: #8c827b;
   --border: #efe6df;
   --divider: rgba(239, 233, 228, 0.7);
-  --badge-background: rgba(255, 255, 255, 0.8);
+  --badge-background: rgba(var(--color-base-0-rgb), 0.8);
   --scroll-thumb: rgba(208, 200, 194, 0.7);
-  --brand-border-soft: rgba(217, 4, 41, 0.16);
+  --brand-border-soft: rgba(var(--color-brand-primary-rgb), 0.16);
   --radius-lg: 1.4rem;
   --radius-md: 1rem;
   --radius-sm: 0.6rem;
@@ -59,7 +83,7 @@ main {
 */
 html {
   font-size: 62.5%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(var(--color-base-1000-rgb), 0);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -199,7 +223,7 @@ button {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 500;
-  color: #3c332f;
+  color: var(--color-base-820);
 }
 
 .notfound a {

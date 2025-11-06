@@ -9,7 +9,7 @@ export default function Loading({ text, full }) {
             cx="50"
             cy="50"
             fill="none"
-            stroke="#ef233c"
+            stroke="var(--color-brand-accent)"
             strokeWidth="10"
             r="34"
             strokeDasharray="160.22122533307947 55.40707511102649"

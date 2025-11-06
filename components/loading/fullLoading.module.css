@@ -20,5 +20,5 @@
 }
 .subtext {
   font-size: 2.3rem;
-  color: #7a706a;
+  color: var(--color-base-600);
 }

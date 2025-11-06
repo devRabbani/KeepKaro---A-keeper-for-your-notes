@@ -5,7 +5,7 @@
   background-color: var(--card-background);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 16px 32px -30px rgba(45, 38, 35, 0.15);
+  box-shadow: 0 16px 32px -30px rgba(var(--color-base-900-rgb), 0.15);
 }
 
 .navDiv {
@@ -38,8 +38,8 @@
 
 .menuButton:hover,
 .menuButton:focus-visible {
-  background-color: rgba(251, 248, 245, 0.18);
-  border-color: rgba(45, 38, 35, 0.12);
+  background-color: rgba(var(--color-surface-base-rgb), 0.18);
+  border-color: rgba(var(--color-base-900-rgb), 0.12);
 }
 
 .menuButton:active {
@@ -92,15 +92,15 @@
 }
 
 .statusSaving {
-  background-color: rgba(217, 4, 41, 0.1);
+  background-color: rgba(var(--color-brand-primary-rgb), 0.1);
   color: var(--brand-color);
-  border: 1px solid rgba(217, 4, 41, 0.2);
+  border: 1px solid rgba(var(--color-brand-primary-rgb), 0.2);
 }
 
 .statusDone {
   background-color: var(--brand-color-light);
   color: var(--brand-foreground);
-  border: 1px solid rgba(217, 4, 41, 0.25);
+  border: 1px solid rgba(var(--color-brand-primary-rgb), 0.25);
 }
 
 .userChip {
@@ -176,7 +176,7 @@
 
 .mode {
   border-radius: 50%;
-  background-color: rgba(248, 246, 244, 0.8);
+  background-color: rgba(var(--color-surface-overlay-rgb), 0.8);
   width: 3.6rem;
   height: 3.6rem;
   display: inline-flex;
@@ -189,7 +189,7 @@
 
 .mode:hover,
 .mode:focus-visible {
-  background-color: rgba(251, 248, 245, 0.88);
+  background-color: rgba(var(--color-surface-base-rgb), 0.88);
 }
 
 .mode:active {
@@ -211,7 +211,7 @@
 
 .closeButton:hover,
 .closeButton:focus-visible {
-  background-color: rgba(251, 248, 245, 0.88);
+  background-color: rgba(var(--color-surface-base-rgb), 0.88);
 }
 
 .closeButton:active {
@@ -267,12 +267,12 @@
 
 .loginBtn:hover,
 .logoutBtn:hover {
-  box-shadow: 0 16px 28px -26px rgba(45, 38, 35, 0.5);
+  box-shadow: 0 16px 28px -26px rgba(var(--color-base-900-rgb), 0.5);
 }
 
 .logoutBtn:hover,
 .logoutBtn:focus-visible {
-  background-color: rgba(217, 4, 41, 0.14);
+  background-color: rgba(var(--color-brand-primary-rgb), 0.14);
   border-color: var(--brand-color);
   color: var(--brand-color);
 }

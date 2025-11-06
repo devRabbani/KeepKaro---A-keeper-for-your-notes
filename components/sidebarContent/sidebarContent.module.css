@@ -22,7 +22,7 @@
   border: none;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease,
     box-shadow 0.2s ease;
-  box-shadow: 0 14px 28px -20px rgba(217, 4, 41, 0.45);
+  box-shadow: 0 14px 28px -20px rgba(var(--color-brand-primary-rgb), 0.45);
 }
 
 .newKeepBtn svg {
@@ -33,7 +33,7 @@
 .newKeepBtn:focus-visible {
   background-color: var(--brand-color);
   color: var(--brand-foreground);
-  box-shadow: 0 16px 32px -22px rgba(217, 4, 41, 0.45);
+  box-shadow: 0 16px 32px -22px rgba(var(--color-brand-primary-rgb), 0.45);
 }
 
 .newKeepBtn:active {
@@ -102,7 +102,7 @@
 }
 
 .keepItem:hover {
-  background-color: rgba(217, 4, 41, 0.05);
+  background-color: rgba(var(--color-brand-primary-rgb), 0.05);
 }
 
 .keepItem:global(.active) {
