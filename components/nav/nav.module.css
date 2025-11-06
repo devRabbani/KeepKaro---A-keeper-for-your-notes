@@ -72,35 +72,30 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 1.5rem;
   min-height: 3.6rem;
 }
 
-.statusBadge {
+.status {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
   font-size: 1.4rem;
   font-weight: 600;
-  transition: transform 0.2s ease;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
 }
 
-.statusBadge svg {
+.status svg {
   font-size: 1.6rem;
 }
 
 .statusSaving {
-  background-color: var(--brand-tint-soft);
   color: var(--brand);
-  border: 1px solid var(--brand-border);
 }
 
 .statusDone {
-  background-color: var(--brand);
-  color: var(--brand-contrast);
-  border: 1px solid var(--brand-border);
+  color: var(--text-primary);
 }
 
 .userChip {
@@ -184,12 +179,12 @@
   justify-content: center;
   color: var(--text-primary);
   border: 1px solid transparent;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .mode:hover,
 .mode:focus-visible {
-  background-color: var(--surface-overlay-strong);
+  background-color: var(--surface-overlay-glass);
 }
 
 .mode:active {
@@ -287,6 +282,10 @@
   .sidebarWrapper{
     padding-inline:2.2rem;
     padding-bottom:2.4rem;
+  }
+
+  .navRight{
+    gap:3rem
   }
 }
 

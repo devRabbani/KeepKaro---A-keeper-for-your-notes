@@ -37,9 +37,7 @@ export default function Nav() {
   const status =
     keepSaving || keepDone ? (
       <span
-        className={`${s.statusBadge} ${
-          keepSaving ? s.statusSaving : s.statusDone
-        }`}
+        className={`${s.status} ${keepSaving ? s.statusSaving : s.statusDone}`}
       >
         {keepSaving ? <RiUploadCloud2Line /> : <RiSave3Line />}
         {keepSaving ? 'Keeping' : 'Kept'}

@@ -4,7 +4,7 @@
   --brand-hover: rgb(185, 3, 35);
   --brand-contrast: rgb(255, 255, 255);
 
-  --brand-tint-soft: rgba(var(--brand-rgb), 0.08);
+  --brand-tint-soft: rgba(var(--brand-rgb), 0.05);
   --brand-tint-medium: rgba(var(--brand-rgb), 0.16);
   --brand-tint-bold: rgba(var(--brand-rgb), 0.35);
   --brand-border: rgba(var(--brand-rgb), 0.16);
@@ -14,7 +14,7 @@
   --surface-base: rgb(252, 250, 248);
   --surface-card: rgb(255, 252, 250);
   --surface-muted: rgb(243, 238, 234);
-  --surface-read: rgb(248, 244, 240);
+  --surface-read: rgb(248, 246, 245);
   --surface-overlay-soft: rgba(251, 248, 245, 0.18);
   --surface-overlay-strong: rgba(251, 248, 245, 0.88);
   --surface-overlay-glass: rgba(248, 246, 244, 0.8);
