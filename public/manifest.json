@@ -26,7 +26,7 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "rgb(237, 242, 244)",
+  "background_color": "rgb(252, 250, 248)",
   "theme_color": "rgb(217, 4, 41)",
   "orientation": "portrait",
   "categories": ["productivity"],

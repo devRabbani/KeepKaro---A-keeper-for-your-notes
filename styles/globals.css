@@ -1,90 +1,51 @@
 :root {
-  --color-brand-primary-rgb: 217, 4, 41;
-  --color-brand-primary: rgb(var(--color-brand-primary-rgb));
-  --color-brand-primary-dark-rgb: 185, 3, 35;
-  --color-brand-primary-dark: rgb(var(--color-brand-primary-dark-rgb));
-  --color-brand-accent-rgb: 239, 35, 60;
-  --color-brand-accent: rgb(var(--color-brand-accent-rgb));
-  --color-warning-rgb: 228, 126, 36;
-  --color-warning: rgb(var(--color-warning-rgb));
+  --brand-rgb: 217, 4, 41;
+  --brand: rgb(var(--brand-rgb));
+  --brand-hover: rgb(185, 3, 35);
+  --brand-contrast: rgb(255, 255, 255);
 
-  --color-base-0-rgb: 255, 255, 255;
-  --color-base-0: rgb(var(--color-base-0-rgb));
-  --color-base-100-rgb: 243, 238, 234;
-  --color-base-100: rgb(var(--color-base-100-rgb));
-  --color-base-150-rgb: 215, 207, 201;
-  --color-base-150: rgb(var(--color-base-150-rgb));
-  --color-base-200-rgb: 226, 218, 212;
-  --color-base-200: rgb(var(--color-base-200-rgb));
-  --color-base-600-rgb: 122, 112, 106;
-  --color-base-600: rgb(var(--color-base-600-rgb));
-  --color-base-820-rgb: 60, 51, 47;
-  --color-base-820: rgb(var(--color-base-820-rgb));
-  --color-base-840-rgb: 61, 51, 46;
-  --color-base-840: rgb(var(--color-base-840-rgb));
-  --color-base-900-rgb: 45, 38, 35;
-  --color-base-900: rgb(var(--color-base-900-rgb));
-  --color-base-960-rgb: 26, 24, 23;
-  --color-base-960: rgb(var(--color-base-960-rgb));
-  --color-base-1000-rgb: 0, 0, 0;
-  --color-base-1000: rgb(var(--color-base-1000-rgb));
-  --color-border-strong-rgb: 225, 225, 225;
-  --color-border-strong: rgb(var(--color-border-strong-rgb));
+  --brand-tint-soft: rgba(var(--brand-rgb), 0.08);
+  --brand-tint-medium: rgba(var(--brand-rgb), 0.16);
+  --brand-tint-bold: rgba(var(--brand-rgb), 0.35);
+  --brand-border: rgba(var(--brand-rgb), 0.16);
+  --shadow-brand-soft: 0 14px 28px -24px rgba(var(--brand-rgb), 0.35);
+  --shadow-brand-strong: 0 16px 32px -26px rgba(var(--brand-rgb), 0.45);
 
-  --color-surface-base-rgb: 251, 248, 245;
-  --color-surface-overlay-rgb: 248, 246, 244;
+  --surface-base: rgb(252, 250, 248);
+  --surface-card: rgb(255, 252, 250);
+  --surface-muted: rgb(243, 238, 234);
+  --surface-read: rgb(248, 244, 240);
+  --surface-overlay-soft: rgba(251, 248, 245, 0.18);
+  --surface-overlay-strong: rgba(251, 248, 245, 0.88);
+  --surface-overlay-glass: rgba(248, 246, 244, 0.8);
 
-  --background-rgb: 252, 250, 248;
-  --background: rgb(var(--background-rgb));
-  --background-soft: rgba(var(--background-rgb), 0.96);
-  --card-background-rgb: 255, 252, 250;
-  --card-background: rgb(var(--card-background-rgb));
-  --foreground: var(--color-base-840);
-  --muted: rgb(140, 130, 123);
+  --text-primary: rgb(61, 51, 46);
+  --text-strong: rgb(45, 38, 35);
+  --text-muted: rgb(140, 130, 123);
+
   --border: rgb(239, 230, 223);
-  --brand-foreground: var(--color-base-0);
-  --brand-color: var(--color-brand-primary);
-  --brand-color-light: rgba(var(--color-brand-primary-rgb), 0.92);
-  --brand-color-extra-light: rgb(231, 195, 198);
+  --border-subtle: rgb(226, 218, 212);
 
-  --badge-background: var(--color-base-0-a80);
+  --ink-rgb: 45, 38, 35;
+  --ink-glass-soft: rgba(var(--ink-rgb), 0.04);
+  --ink-glass-hover: rgba(var(--ink-rgb), 0.08);
+  --ink-glass-strong: rgba(var(--ink-rgb), 0.18);
+  --shadow-ink-soft: 0 12px 28px -28px rgba(var(--ink-rgb), 0.12);
+  --shadow-ink-medium: 0 16px 32px -32px rgba(var(--ink-rgb), 0.18);
+  --shadow-ink-strong: 0 10px 24px -24px rgba(var(--ink-rgb), 0.35);
+  --shadow-ink-heavy: 0 16px 28px -26px rgba(var(--ink-rgb), 0.5);
+
+  --badge-background: rgba(255, 255, 255, 0.8);
   --scroll-thumb: rgba(208, 200, 194, 0.7);
   --divider: rgba(239, 233, 228, 0.7);
-  --brand-border-soft: var(--color-brand-primary-a16);
-
-  --color-brand-primary-a015: rgba(var(--color-brand-primary-rgb), 0.015);
-  --color-brand-primary-a04: rgba(var(--color-brand-primary-rgb), 0.04);
-  --color-brand-primary-a05: rgba(var(--color-brand-primary-rgb), 0.05);
-  --color-brand-primary-a10: rgba(var(--color-brand-primary-rgb), 0.1);
-  --color-brand-primary-a12: rgba(var(--color-brand-primary-rgb), 0.12);
-  --color-brand-primary-a14: rgba(var(--color-brand-primary-rgb), 0.14);
-  --color-brand-primary-a16: rgba(var(--color-brand-primary-rgb), 0.16);
-  --color-brand-primary-a20: rgba(var(--color-brand-primary-rgb), 0.2);
-  --color-brand-primary-a25: rgba(var(--color-brand-primary-rgb), 0.25);
-  --color-brand-primary-a35: rgba(var(--color-brand-primary-rgb), 0.35);
-  --color-brand-primary-a45: rgba(var(--color-brand-primary-rgb), 0.45);
-
-  --color-base-900-a08: rgba(var(--color-base-900-rgb), 0.08);
-  --color-base-900-a15: rgba(var(--color-base-900-rgb), 0.15);
-  --color-base-900-a12: rgba(var(--color-base-900-rgb), 0.12);
-  --color-base-900-a18: rgba(var(--color-base-900-rgb), 0.18);
-  --color-base-900-a35: rgba(var(--color-base-900-rgb), 0.35);
-  --color-base-900-a50: rgba(var(--color-base-900-rgb), 0.5);
-  --color-base-960-a40: rgba(var(--color-base-960-rgb), 0.4);
-  --color-base-1000-a00: rgba(var(--color-base-1000-rgb), 0);
-  --color-base-1000-a04: rgba(var(--color-base-1000-rgb), 0.04);
-  --color-base-1000-a06: rgba(var(--color-base-1000-rgb), 0.06);
-  --color-base-1000-a08: rgba(var(--color-base-1000-rgb), 0.08);
-  --color-surface-base-a18: rgba(var(--color-surface-base-rgb), 0.18);
-  --color-surface-base-a88: rgba(var(--color-surface-base-rgb), 0.88);
-  --color-surface-overlay-a80: rgba(var(--color-surface-overlay-rgb), 0.8);
-  --color-base-0-a80: rgba(var(--color-base-0-rgb), 0.8);
 
   --radius-lg: 1.4rem;
   --radius-md: 1rem;
   --radius-sm: 0.6rem;
   --button-font-size: 1.5rem;
   --sidebar-width: 38rem;
+
+  --color-brand-accent: var(--brand);
 }
 
 /*
@@ -126,7 +87,6 @@ main {
 */
 html {
   font-size: 62.5%;
-  -webkit-tap-highlight-color: var(--color-base-1000-a00);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -134,8 +94,8 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--surface-base);
+  color: var(--text-primary);
 }
 
 html:focus-within {
@@ -266,12 +226,12 @@ button {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 500;
-  color: var(--color-base-820);
+  color: var(--text-strong);
 }
 
 .notfound a {
   font-size: 2rem;
-  color: var(--brand-color);
+  color: var(--brand);
 }
 
 @media screen and (min-width: 1280px) {

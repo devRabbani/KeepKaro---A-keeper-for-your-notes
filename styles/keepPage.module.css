@@ -14,8 +14,8 @@
   padding: 1.5rem 1.4rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background-color: var(--card-background);
-  box-shadow: 0 16px 32px -32px var(--color-base-900-a18);
+  background-color: var(--surface-card);
+  box-shadow: var(--shadow-ink-medium);
   width:100%;
   margin-inline: auto;
   flex: 1;
@@ -27,20 +27,20 @@
   border: none;
   outline: none;
   background: transparent;
-  color: var(--foreground);
+  color: var(--text-primary);
   padding: 0;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
 }
 
 .titleField::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
   opacity: 0.8;
 }
 
 .titleField:focus,
 .titleField:active {
-  border-bottom-color: var(--color-brand-primary-a35);
+  border-bottom-color: var(--brand-tint-bold);
 }
 
 .bodyField {
@@ -52,12 +52,12 @@
   resize: none;
   font-size: 1.7rem;
   line-height: 1.7;
-  color: var(--foreground);
+  color: var(--text-primary);
   background: transparent;
 }
 
 .bodyField::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
   opacity: 0.75;
 }
 
@@ -65,7 +65,7 @@
 .keepPage input:active,
 .keepPage textarea:focus,
 .keepPage textarea:active {
-  border-color: var(--brand-color);
+  border-color: var(--brand);
 }
 
 .keepInfo {
@@ -90,7 +90,7 @@
   font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text-muted);
   font-weight: 600;
   white-space: nowrap;
   line-height: 1;
@@ -99,7 +99,7 @@
 .infoValue {
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: var(--text-primary);
   text-transform: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -126,7 +126,7 @@
 
 .toolbarSeparator{
   width: 1px;
-  background-color: var(--color-base-900-a18);
+  background-color: var(--ink-glass-strong);
   height: 2rem;
 }
 
@@ -139,7 +139,7 @@
   height: 4.2rem;
   border-radius: 50%;
   border: none;
-  color: var(--foreground);
+  color: var(--text-primary);
   background-color: transparent;
   transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -151,10 +151,10 @@
 
 .iconButton:hover,
 .iconButton:focus-visible {
-  color: var(--foreground);
-  box-shadow: 0 8px 20px -18px var(--color-base-960-a40);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-ink-strong);
   transform: translateY(-1px);
-  background-color: var(--color-base-900-a08);
+  background-color: var(--ink-glass-soft);
 }
 
 .iconButton:active {
@@ -169,16 +169,16 @@
 }
 
 .shareButton {
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
 .shareButton:hover,
 .shareButton:focus-visible {
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
 .shareButton:disabled {
-  color: var(--muted);
+  color: var(--text-muted);
   box-shadow: none;
 }
 
@@ -214,7 +214,7 @@
 
 .title {
   font-weight: 600;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: clamp(2.1rem, 2.5vw, 2.4rem);
 }
 
@@ -223,20 +223,20 @@
   overflow-wrap: break-word;
   font-size: 1.7rem;
   line-height: 1.7;
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
 
 .content a {
-  color: var(--brand-color);
+  color: var(--brand);
   font-weight: 500;
 }
 
 .readCard {
   gap: 1.7rem;
-  background: var(--color-brand-primary-a015);
-  border: 1px solid var(--color-brand-primary-a10);
-  box-shadow: 0 18px 30px -34px var(--color-brand-primary-a12);
+  background: var(--surface-read);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-ink-soft);
 }
 
 .toolbarWrapper {
@@ -254,17 +254,17 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 0.6rem 1.4rem;
-  background-color: var(--card-background);
-  box-shadow: 0 14px 32px -30px var(--color-base-900-a18);
+  background-color: var(--surface-card);
+  box-shadow: var(--shadow-ink-medium);
 }
 
 .editBtn {
-  color: var(--foreground);
+  color: var(--text-primary);
   border-color: var(--border);
 }
 
 .dltBtn {
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
 .keepInfo .toolbar {

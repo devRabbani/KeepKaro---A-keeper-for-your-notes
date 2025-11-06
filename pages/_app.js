@@ -40,10 +40,10 @@ export default function App({ Component, pageProps }) {
       return rootStyles.getPropertyValue(fallback).trim()
     }
 
-    const bannerColor = getVar('--color-warning', '--brand-color')
-    const textColor = getVar('--color-base-0', '--brand-foreground')
-    const shadowColor = getVar('--color-base-1000', '--color-base-900')
-    const infoColor = getVar('--color-border-strong', '--border')
+    const bannerColor = getVar('--brand')
+    const textColor = getVar('--brand-contrast')
+    const shadowColor = getVar('--text-strong', '--text-primary')
+    const infoColor = getVar('--border')
 
     const bannerStyles = `color: ${bannerColor}; font-size: 4.5em; font-weight: bolder; text-shadow: ${shadowColor} 1px 1px;`
     const textStyles = `color: ${textColor}; font-size: 4.5em; font-weight: bolder; text-shadow: ${shadowColor} 1px 1px;`
