@@ -73,7 +73,10 @@ const Sidebar = ({ setIsMenu, isMenu }, ref) => {
   }, [mode])
 
   return (
-    <div ref={ref} className={`${s.sidebarWrapper} ${isMenu ? 'open' : ''}`}>
+    <div
+      ref={ref}
+      className={`${s.sidebarWrapper} appSidebar ${isMenu ? 'open' : ''}`}
+    >
       <div className={s.sidebarHeader}>
         <Link href="/" className={s.sidebarLogo}>
           KeepKaro

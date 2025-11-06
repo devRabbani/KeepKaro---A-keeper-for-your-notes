@@ -272,10 +272,10 @@
 
 @media screen and (min-width: 1280px) {
   .homePage {
-    padding: 3rem 0 8rem 40rem;
+    padding: 3rem 0 8rem;
   }
 
-  .keepLists{
-    grid-template-columns: repeat(3,1fr)
+  .keepLists {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

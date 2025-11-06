@@ -53,8 +53,12 @@ export default function App({ Component, pageProps }) {
         <AuthContextProvider>
           <KeepListsContextProvider>
             <KeepSavingContextProvider>
-              <Nav />
-              <Component {...pageProps} />
+              <div className="appShell">
+                <Nav />
+                <div className="appShellContent">
+                  <Component {...pageProps} />
+                </div>
+              </div>
             </KeepSavingContextProvider>
           </KeepListsContextProvider>
         </AuthContextProvider>

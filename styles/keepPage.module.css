@@ -366,7 +366,7 @@
 
 @media screen and (min-width: 1280px) {
   .keepPage {
-    padding: 3rem 3.6rem 5rem 40rem;
+    padding: 3rem 3.6rem 5rem;
     min-height: 100%;
   }
 
