@@ -40,7 +40,6 @@ export default function Toolbar({ keepId, uid, edit, setEdit }) {
   }
 
   return (
-    <div className={s.toolbarWrapper}>
       <div className={s.toolbar}>
         <button
           disabled={dltLoading}
@@ -60,6 +59,5 @@ export default function Toolbar({ keepId, uid, edit, setEdit }) {
           {edit ? <RiEyeFill /> : <RiEditFill />}
         </button>
       </div>
-    </div>
   )
 }

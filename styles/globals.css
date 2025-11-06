@@ -17,6 +17,7 @@
   --radius-md: 1rem;
   --radius-sm: 0.6rem;
   --button-font-size: 1.5rem;
+  --sidebar-width: 38rem;
 }
 
 /*
@@ -133,6 +134,44 @@ a {
   width: 95%;
   max-width: 900px;
   margin-inline: auto;
+}
+
+.appShell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.appShellContent {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media screen and (min-width: 1280px) {
+  .appShell {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+
+  .appShell > nav {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .appShellContent {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .appShell > .appSidebar {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+  }
 }
 
 button {

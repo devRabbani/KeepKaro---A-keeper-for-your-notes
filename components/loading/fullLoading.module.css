@@ -22,9 +22,3 @@
   font-size: 2.3rem;
   color: #7a706a;
 }
-
-@media screen and (min-width: 1280px) {
-  .body:not(:global(.full)) {
-    padding: 0 0 2rem 40rem;
-  }
-}
