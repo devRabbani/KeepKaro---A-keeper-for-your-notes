@@ -163,6 +163,19 @@ export default function KeepPage() {
             <p className={s.infoValue}>{name || 'User'}</p>
           </div>
           <div className={s.infoActions}>
+            {isOwn ? (
+              <>
+                <Toolbar
+                keepId={keepId}
+                edit={edit}
+                setEdit={setEdit}
+                uid={user?.uid}
+              />
+              <div className={s.toolbarSeparator} />
+              </>
+
+            ) : null}
+
             <button
               type="button"
               className={`${s.iconButton} ${s.shareButton}`}
@@ -177,14 +190,6 @@ export default function KeepPage() {
                 {shareLoading ? 'Sharing keep' : 'Share keep'}
               </span>
             </button>
-            {isOwn ? (
-              <Toolbar
-                keepId={keepId}
-                edit={edit}
-                setEdit={setEdit}
-                uid={user?.uid}
-              />
-            ) : null}
           </div>
         </div>
         {edit && isOwn ? (
